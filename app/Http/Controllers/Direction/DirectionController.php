@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Direction;
 
 use App\Http\Controllers\Controller;
-use App\Http\Handlers\Blog\StoreBlogHandler;
-use App\Http\Requests\Blog\StoreBlogRequest;
-use App\Models\Blog\Blog;
-use App\Models\Blog\BlogCategory;
+use App\Http\Handlers\Direction\StoreDirectionHandler;
+use App\Http\Requests\Direction\StoreDirectionRequest;
 use App\Models\Direction\Direction;
 use App\Models\Direction\DirectionCategory;
+use App\Models\Clinic\Clinic;
 
 class DirectionController extends Controller
 {
@@ -32,12 +31,13 @@ class DirectionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Direction $direction, DirectionCategory $categories)
+    public function create(Direction $direction, DirectionCategory $categories, Clinic $clinics)
     {
 
         return view('direction.form', [
             'model' => $direction,
-            'categories' => $categories->all()
+            'categories' => $categories->whereParents()->get(),
+            'clinics' => $clinics->get()->pluck('name', 'id')->toArray(),
         ]);
 
     }
@@ -48,12 +48,12 @@ class DirectionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreBlogRequest $request, StoreBlogHandler $handler)
+    public function store(StoreDirectionRequest $request, StoreDirectionHandler $handler)
     {
 
-        if ($blog = $handler->process($request))
+        if ($direction = $handler->process($request))
         {
-            return redirect()->route('blog.edit', $blog)->with('message', __( 'Сохранено' ));
+            return redirect()->route('direction.index')->with('message', __( 'Сохранено' ));
         }
 
         return back()->withErrors($handler->getErrors());
@@ -63,10 +63,10 @@ class DirectionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  \App\Models\Direction  $direction
      * @return \Illuminate\Http\Response
      */
-    public function show(Blog $blog)
+    public function show(Direction $direction)
     {
         //
     }
@@ -74,15 +74,16 @@ class DirectionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  \App\Models\Direction  $direction
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog, BlogCategory $categories)
+    public function edit(Direction $direction, DirectionCategory $categories, Clinic $clinics)
     {
 
-        return view('blog.form', [
-            'model' => $blog,
-            'categories' => $categories->all()
+        return view('direction.form', [
+            'model' => $direction,
+            'categories' => $categories->whereParents()->get(),
+            'clinics' => $clinics->get()->pluck('name', 'id')->toArray(),
         ]);
 
     }
@@ -91,15 +92,15 @@ class DirectionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Blog  $blog
+     * @param  \App\Models\Direction  $direction
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreBlogRequest $request, StoreBlogHandler $handler, Blog $blog)
+    public function update(StoreDirectionRequest $request, StoreDirectionHandler $handler, Direction $direction)
     {
 
-        if ($blog = $handler->process($request, $blog))
+        if ($direction = $handler->process($request, $direction))
         {
-            return redirect()->route('blog.index', $blog)->with('message', __( 'Сохранено' ));
+            return redirect()->route('direction.index')->with('message', __( 'Сохранено' ));
         }
 
         return back()->withErrors($handler->getErrors());
@@ -109,15 +110,15 @@ class DirectionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  \App\Models\Direction  $direction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy(Direction $direction)
     {
 
-        if ($blog->delete())
+        if ($direction->delete())
         {
-            return redirect()->route('blog.index')->with('message', __( 'Удалено' ));
+            return redirect()->route('Direction.index')->with('message', __( 'Удалено' ));
         }
 
         return back()->withErrors([__('Не удалось удалить запись')]);

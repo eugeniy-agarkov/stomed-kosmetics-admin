@@ -2,9 +2,11 @@
 
 namespace App\Models\Direction;
 
+use App\Models\Gallery\Gallery;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -27,11 +29,18 @@ class Direction extends Model
      * @var string[]
      */
     protected $fillable = [
-        'parent_id',
+        'category_id',
+        'clinic_id',
         'slug',
         'name',
+        'image',
+        'time_spending',
+        'excerpt',
+        'title_excerpt',
+        'description',
         'is_top',
         'is_active',
+        'order',
     ];
 
     /**
@@ -62,6 +71,22 @@ class Direction extends Model
     public function page(): HasOne
     {
         return $this->hasOne(DirectionPage::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(DirectionImage::class);
+    }
+
+    /**
+     * @return HasMany
+     */
+    public function gallery(): HasMany
+    {
+        return $this->hasMany(Gallery::class);
     }
 
 }

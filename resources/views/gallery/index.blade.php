@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('meta')
-    <title>{{ __( 'Список направлений' ) }}</title>
+    <title>{{ __( 'Галерея' ) }}</title>
 @endsection
 
 @section('content')
@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                {{ __( 'Направления' ) }}
+                {{ __( 'Галерея' ) }}
             </li>
         </ol>
         <!-- end breadcrumb -->
@@ -35,12 +35,12 @@
             <div class="card-body">
 
                 <!-- form -->
-                <form action="{{ route('direction.index') }}" class="row">
+                <form action="{{ route('gallery.index') }}" class="row">
                     @csrf
 
                     <!-- col -->
                     <div class="col-md-3">
-                        {!! html_select('categories', (int)request('categories', ''), ['' => __( 'Категория' )] + list_data($categories, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
+                        {!! html_select('directions', (int)request('directions', ''), ['' => __( 'Направление' )] + list_data($directions, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
                     </div>
                     <!-- end col -->
 
@@ -82,7 +82,7 @@
 
                 <!-- btn -->
                 <p>
-                    <a href="{{route('direction.create')}}" class="btn btn-primary">
+                    <a href="{{route('gallery.create')}}" class="btn btn-primary">
                         {{ __( 'Добавить' ) }}
                     </a>
                 </p>
@@ -98,8 +98,7 @@
                             <th>{{ __( 'Дата' ) }}</th>
                             <th>{{ __( 'Фото' ) }}</th>
                             <th>{{ __( 'Название' ) }}</th>
-                            <th>{{ __( 'Статус' ) }}</th>
-                            <th>{{ __( 'ТОП' ) }}</th>
+                            <th>{{ __( 'Оригинал' ) }}</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -119,34 +118,17 @@
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>
-                                    @if( $item->is_active )
-                                        <span class="badge badge-success">
-                                            {{ __( 'Активный' ) }}
-                                        </span>
-                                    @else
-                                        <span class="badge badge-secondary">
-                                            {{ __( 'Скрытый' ) }}
-                                        </span>
-                                    @endif
-                                </td>
-                                <td>
-                                    @if( $item->is_top )
-                                        <span class="badge badge-success">
-                                            {{ __( 'Да' ) }}
-                                        </span>
-                                    @else
-                                        <span class="badge badge-secondary">
-                                            {{ __( 'Нет' ) }}
-                                        </span>
-                                    @endif
+                                    <a href="{{ Storage::url('images/' . $item->image) }}" target="_blank">
+                                        {{ __( 'Посмотреть' ) }}
+                                    </a>
                                 </td>
                                 <td class="text-right">
-                                    <a href="{{route('direction.edit', $item)}}" class="btn btn-info btn-xs">
+                                    <a href="{{route('gallery.edit', $item)}}" class="btn btn-info btn-xs">
                                         {{ __( 'Изменить' ) }}
                                     </a>
                                 </td>
                                 <td class="text-left">
-                                    <form action="{{route('direction.destroy', $item)}}" method="post" onsubmit="return confirm('Вы уверены?')">
+                                    <form action="{{route('gallery.destroy', $item)}}" method="post" onsubmit="return confirm('Вы уверены?')">
                                         @method('delete')
                                         @csrf
                                         <button type="submit" class="btn btn-danger btn-xs">

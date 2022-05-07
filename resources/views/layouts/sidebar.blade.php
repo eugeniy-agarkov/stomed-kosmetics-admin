@@ -170,6 +170,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item {{ active_class(['gallery']) }}">
+                <a href="{{ route('gallery.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="columns"></i>
+                    <span class="link-title">
+                        {{ __( 'Галерея' ) }}
+                    </span>
+                </a>
+            </li>
 
         </ul>
         <!-- end nav -->

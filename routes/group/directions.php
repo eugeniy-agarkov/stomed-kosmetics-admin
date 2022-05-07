@@ -41,4 +41,24 @@ Route::group(
     Route::get('/categories/{category}/page', 'DirectionCategoryPageController@edit')->name('direction.categories.page.edit');
     Route::post('/categories/{category}/page', 'DirectionCategoryPageController@store')->name('direction.categories.page.store');
 
+    /**
+     * Images
+     */
+    Route::get('/{direction}/images', 'DirectionImageController@index')->name('direction.images.index');
+    Route::get('/{direction}/images/create', 'DirectionImageController@create')->name('direction.images.create');
+    Route::post('/{direction}/images', 'DirectionImageController@store')->name('direction.images.store');
+    Route::get('/{direction}/images/edit/{image}', 'DirectionImageController@edit')->name('direction.images.edit');
+    Route::delete('/{direction}/images/{image}', 'DirectionImageController@destroy')->name('direction.images.destroy');
+    Route::post('/{direction}/images/{image}', 'DirectionImageController@update')->name('direction.images.update');
+
+    /**
+     * Gallery
+     */
+    Route::get('/{direction}/gallery', 'DirectionGalleryController@index')->name('direction.gallery.index');
+    Route::get('/{direction}/gallery/create', 'DirectionGalleryController@create')->name('direction.gallery.create');
+    Route::post('/{direction}/gallery', 'DirectionGalleryController@store')->name('direction.gallery.store');
+    Route::get('/{direction}/gallery/edit/{image}', 'DirectionGalleryController@edit')->name('direction.gallery.edit');
+    Route::delete('/{direction}/gallery/{image}', 'DirectionGalleryController@destroy')->name('direction.gallery.destroy');
+    Route::post('/{direction}/gallery/{image}', 'DirectionGalleryController@update')->name('direction.gallery.update');
+
 });

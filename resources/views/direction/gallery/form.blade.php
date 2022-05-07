@@ -1,7 +1,11 @@
 @extends('layouts.app')
 
 @section('meta')
-    <title>{{ __( 'SEO' ) }} {{$direction->name}}</title>
+    @if($model->id)
+        <title>{{ __( 'Редактирование изображения' ) }}</title>
+    @else
+        <title>{{ __( 'Добавление изображения' ) }}</title>
+    @endif
 @endsection
 
 @section('content')
@@ -17,7 +21,7 @@
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{route('direction.index')}}">
+                <a href="{{ route('direction.index') }}">
                     {{ __( 'Направления' ) }}
                 </a>
             </li>
@@ -26,8 +30,17 @@
                     {{ $direction->name }}
                 </a>
             </li>
+            <li class="breadcrumb-item">
+                <a href="{{ route('direction.gallery.index', $direction) }}">
+                    {{ __( 'Галерея' ) }}
+                </a>
+            </li>
             <li class="breadcrumb-item active" aria-current="page">
-                {{ __( 'SEO данные' ) }}
+                @if($model->id)
+                    {{ __( 'Редактирование изображения' ) }}
+                @else
+                    {{ __( 'Добавление изображения' ) }}
+                @endif
             </li>
         </ol>
         <!-- end breadcrumb -->
@@ -37,13 +50,13 @@
 
     @include('partials.message')
 
-    @includeWhen($direction->id, 'direction.tabs', ['model' => $direction])
-
     <!-- form -->
-    <form action="{{ route('direction.page.store', $direction) }}" method="post" enctype="multipart/form-data">
-    @csrf
+    <form action="{{route('direction.gallery.' . ($model->id ? 'update' : 'store'), ['direction' => $direction, 'image' => $model])}}" method="post" enctype="multipart/form-data">
+        @csrf
 
-    <!-- row -->
+        {!! html_hidden('direction_id', $direction->id) !!}
+
+        <!-- row -->
         <div class="row">
 
             <!-- col -->
@@ -63,11 +76,11 @@
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="title">
-                                        {{ __( 'Meta title' ) }}
+                                    <label for="name">
+                                        {{ __( 'Наименование' ) }}
                                     </label>
-                                    {!! html_input('text', 'title', $model->title, ['class' => 'form-control', 'id' => 'title']) !!}
-                                    @error('title')
+                                    {!! html_input('text', 'name', old('name', $model->name), ['class' => 'form-control', 'id' => 'name']) !!}
+                                    @error('name')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -79,15 +92,35 @@
                             <!-- end col -->
 
                             <!-- col -->
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="description">
-                                        {{ __( 'Meta description' ) }}
+                                    <label for="alt">
+                                        {{ __( 'Alt' ) }}
                                     </label>
-                                    {!! html_textarea('description', $model->description, ['class' => 'form-control', 'id'=>'description', 'rows' => 6]) !!}
-                                    @error('description')
+                                    {!! html_input('text', 'alt', old('alt', $model->alt), ['class' => 'form-control', 'id' => 'alt']) !!}
+                                    @error('alt')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-6">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="title">
+                                        {{ __( 'Title' ) }}
+                                    </label>
+                                    {!! html_input('text', 'title', old('title', $model->title), ['class' => 'form-control', 'id' => 'title']) !!}
+                                    @error('title')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -121,6 +154,25 @@
 
                         <!-- title -->
                         <h6 class="card-title pt-3">
+                            {{ __( 'Изображение' ) }}
+                        </h6>
+                        <!-- end title -->
+
+                        <!-- group -->
+                        <div class="form-group mb-4">
+                            @if($model->image)
+                                <div class="mb-3">
+                                    <img src="{{ Storage::url('thumbnail/' . $model->image) }}" class="img-responsive" style="max-width: 300px;" />
+                                </div>
+                            @endif
+                            {!! html_input('file', 'filename', null, ['id' => 'file', 'multiple' => 'true']) !!}
+                        </div>
+                        <!-- end group -->
+
+                        <hr>
+
+                        <!-- title -->
+                        <h6 class="card-title pt-3">
                             {{ __( 'Действие' ) }}
                         </h6>
                         <!-- end title -->
@@ -129,7 +181,7 @@
                             {{ __( 'Сохранить' ) }}
                         </button>
 
-                        <a href="{{ route('direction.edit', ['direction' => $direction]) }}" class="btn btn-primary">
+                        <a href="{{ route('direction.gallery.index', $direction) }}" class="btn btn-primary">
                             {{ __( 'Отмена' ) }}
                         </a>
 
@@ -144,6 +196,7 @@
 
         </div>
         <!-- end row -->
+
     </form>
     <!-- end form -->
 
