@@ -24,6 +24,7 @@
 
     <!-- common css -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/customize.css') }}" rel="stylesheet" />
     <!-- end common css -->
 
     @stack('style')
