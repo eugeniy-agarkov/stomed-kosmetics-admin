@@ -4,7 +4,7 @@
     @if($model->id)
         <title>{{$model->name}}</title>
     @else
-        <title>{{ __( 'Добавление новости' ) }}</title>
+        <title>{{ __( 'Добавление настройки' ) }}</title>
     @endif
 @endsection
 
@@ -21,8 +21,8 @@
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{route('blog.index')}}">
-                    {{ __( 'Новости' ) }}
+                <a href="{{route('seo.index')}}">
+                    {{ __( 'SEO данные' ) }}
                 </a>
             </li>
             @if($model->id)
@@ -31,7 +31,7 @@
                 </li>
             @else
                 <li class="breadcrumb-item active" aria-current="page">
-                    {{ __( 'Добавление новости' ) }}
+                    {{ __( 'Добавление настройки' ) }}
                 </li>
             @endif
         </ol>
@@ -42,10 +42,8 @@
 
     @include('partials.message')
 
-    @includeWhen($model->id, 'blog.tabs', ['blog' => $model])
-
     <!-- form -->
-    <form action="{{route('blog.' . ($model->id ? 'update' : 'store'), ['blog' => $model])}}" method="post" enctype="multipart/form-data">
+    <form action="{{route('seo.' . ($model->id ? 'update' : 'store'), $model)}}" method="post" enctype="multipart/form-data">
         @csrf
 
         <!-- row -->
@@ -64,7 +62,7 @@
                         <div class="row">
 
                             <!-- col -->
-                            <div class="col-lg-8">
+                            <div class="col-lg-4">
 
                                 <!-- group -->
                                 <div class="form-group">
@@ -84,15 +82,35 @@
                             <!-- end col -->
 
                             <!-- col -->
-                            <div class="col-lg-4">
+                            <div class="col-lg-8">
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="category_id">
-                                        {{ __( 'Категория' ) }}
+                                    <label for="page">
+                                        {{ __( 'URL страницы' ) }}
                                     </label>
-                                    {!! html_select('category_id', old('category_id', $model->category_id), list_data($categories, 'id', 'name'), ['class' => 'custom-select', 'id' => 'category_id']) !!}
-                                    @error('category_id')
+                                    {!! html_input('text', 'page', old('page', $model->page), ['class' => 'form-control', 'id' => 'page']) !!}
+                                    @error('page')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-12">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="h1">
+                                        {{ __( 'Заголовок H1' ) }}
+                                    </label>
+                                    {!! html_input('text', 'h1', old('h1', $model->h1), ['class' => 'form-control', 'id' => 'h1']) !!}
+                                    @error('h1')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -111,7 +129,7 @@
                                     <label for="excerpt">
                                         {{ __( 'Краткий текст' ) }}
                                     </label>
-                                    {!! html_textarea('excerpt', old('excerpt', $model->excerpt), ['class' => 'form-control', 'id'=>'excerpt', 'rows' => 7]) !!}
+                                    {!! html_textarea('excerpt', old('excerpt', $model->excerpt), ['class' => 'form-control', 'id'=>'excerpt', 'rows' => 8]) !!}
                                     @error('excerpt')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -128,11 +146,51 @@
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="content">
-                                        {{ __( 'Текст' ) }}
+                                    <label for="meta_title">
+                                        {{ __( 'Meta Title' ) }}
                                     </label>
-                                    {!! html_textarea('content', old('content', $model->content), ['class' => 'form-control custom-editor', 'id'=>'content']) !!}
-                                    @error('content')
+                                    {!! html_input('text', 'meta_title', old('meta_title', $model->meta_title), ['class' => 'form-control', 'id' => 'meta_title']) !!}
+                                    @error('meta_title')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-6">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="meta_description">
+                                        {{ __( 'Meata Description' ) }}
+                                    </label>
+                                    {!! html_textarea('meta_description', old('meta_description', $model->meta_description), ['class' => 'form-control', 'id'=>'meta_description', 'rows' => 6]) !!}
+                                    @error('meta_description')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-6">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="meta_keyword">
+                                        {{ __( 'Meata Keyword' ) }}
+                                    </label>
+                                    {!! html_textarea('meta_keyword', old('meta_keyword', $model->meta_keyword), ['class' => 'form-control', 'id'=>'meta_keyword', 'rows' => 6]) !!}
+                                    @error('meta_keyword')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -170,11 +228,26 @@
                         </h6>
                         <!-- end title -->
 
+                        <!-- check -->
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                                {!! html_hidden('robots', 0) !!}
+                                {!! html_checkbox('robots', old('robots', $model->robots), ['class' => 'form-check-input', 'value' => 1]) !!}
+                                {{ __( 'Индексировать страницу' ) }}
+                                <i class="input-frame"></i>
+                            </label>
+                        </div>
+                        <!-- end check -->
+
+                        <hr>
+
                         <!-- group -->
-                        <div class="form-group mb-4">
-                            <label for="published_at">{{ __( 'Дата публикации' ) }}</label>
-                            {!! html_input('text', 'published_at', $model->published_at ? $model->published_at->format('m/d/Y') : '', ['class' => 'form-control datepicker', 'id' => 'published_at', 'autocomplete' => 'off']) !!}
-                            @error('published_at')
+                        <div class="form-group">
+                            <label for="canonical">
+                                {{ __( 'Canonical' ) }}
+                            </label>
+                            {!! html_input('text', 'canonical', old('canonical', $model->canonical), ['class' => 'form-control', 'id' => 'canonical']) !!}
+                            @error('canonical')
                             <div class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </div>
@@ -182,48 +255,17 @@
                         </div>
                         <!-- end group -->
 
-                        <hr>
-
-                        <!-- title -->
-                        <h6 class="card-title pt-3">
-                            {{ __( 'Изображение' ) }}
-                        </h6>
-                        <!-- end title -->
-
-                        <!-- group -->
-                        <div class="form-group mb-4">
-                            @if($model->photo)
-                                <div class="mb-3">
-                                    <img src="{{ Storage::disk('public')->url('thumbnail/' . $model->photo) }}" class="img-responsive" />
-                                </div>
-                            @endif
-                            {!! html_input('file', 'filename', null, ['id' => 'file', 'multiple' => 'true']) !!}
-                        </div>
-                        <!-- end group -->
-
-                        <hr>
-
                         <!-- title -->
                         <h6 class="card-title pt-3">
                             {{ __( 'Действие' ) }}
                         </h6>
                         <!-- end title -->
 
-                        <!-- check -->
-                        <div class="form-check form-check-flat form-check-primary">
-                            <label class="form-check-label">
-                                {!! html_hidden('is_active', 0) !!}
-                                {!! html_checkbox('is_active', $model->is_active, ['class' => 'form-check-input', 'value' => 1]) !!} Активный
-                                <i class="input-frame"></i>
-                            </label>
-                        </div>
-                        <!-- end check -->
-
                         <button type="submit" class="btn btn-primary">
                             {{ __( 'Сохранить' ) }}
                         </button>
 
-                        <a href="{{ route('blog.index') }}" class="btn btn-primary">
+                        <a href="{{ route('seo.index') }}" class="btn btn-primary">
                             {{ __( 'Отмена' ) }}
                         </a>
 
@@ -241,7 +283,5 @@
 
     </form>
     <!-- end form -->
-
-    @includeWhen($model->id, 'partials.editor', ['slug' => $model->slug])
 
 @endsection

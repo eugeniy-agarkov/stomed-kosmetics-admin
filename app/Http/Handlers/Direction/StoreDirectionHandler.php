@@ -6,6 +6,8 @@ use App\Http\Requests\Direction\StoreDirectionCategoryRequest;
 use App\Http\Requests\Direction\StoreDirectionRequest;
 use App\Models\Direction\Direction;
 use App\Models\Direction\DirectionCategory;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 class StoreDirectionHandler extends BaseHandler
@@ -39,21 +41,24 @@ class StoreDirectionHandler extends BaseHandler
             {
 
                 $originalImage= $request->file('filename');
+                $filename = Str::random(30);
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailPath = storage_path().'/app/public/thumbnail/';
-                $originalPath = storage_path().'/app/public/images/';
-                $thumbnailImage->save($originalPath.time().$originalImage->getClientOriginalName());
+                $thumbnailPath = Storage::disk('public')->path('thumbnail/');
+                $originalPath = Storage::disk('public')->path('images/');
+                $thumbnailImage->save($originalPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
+                /**
+                 * Thumb
+                 */
                 $thumbnailImage->fit(230,155);
-                $thumbnailImage->save($thumbnailPath.time().$originalImage->getClientOriginalName());
-
+                $thumbnailImage->save($thumbnailPath.$filename.'.'.$originalImage->getClientOriginalExtension());
                 $thumbnailImage->fit(810,530);
-                $thumbnailImage->save($thumbnailPath.'single-'.time().$originalImage->getClientOriginalName());
+                $thumbnailImage->save($thumbnailPath.'single-'.$filename.'.'.$originalImage->getClientOriginalExtension());
 
                 /**
                  * Save to Table
                  */
-                $direction->image = time().$originalImage->getClientOriginalName();
+                $direction->image = $filename.'.'.$originalImage->getClientOriginalExtension();
                 $direction->save();
             }
 

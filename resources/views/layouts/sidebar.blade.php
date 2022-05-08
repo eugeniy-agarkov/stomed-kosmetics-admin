@@ -105,6 +105,14 @@
                     </a>
                 </li>
             @endcan
+            <li class="nav-item {{ active_class(['seo']) }}">
+                <a href="{{ route('seo.index') }}" class="nav-link">
+                    <i class="link-icon" data-feather="arrow-up-right"></i>
+                    <span class="link-title">
+                        {{ __( 'SEO данные' ) }}
+                    </span>
+                </a>
+            </li>
             <li class="nav-item {{ active_class(['redirects']) }}">
                 <a href="{{ route('redirect.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="arrow-up-right"></i>
@@ -129,7 +137,7 @@
                 <a href="{{ route('direction.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="columns"></i>
                     <span class="link-title">
-                        {{ __( 'Напроавления' ) }}
+                        {{ __( 'Направления' ) }}
                     </span>
                 </a>
                 <ul class="nav sub-menu">

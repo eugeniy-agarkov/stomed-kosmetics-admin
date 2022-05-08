@@ -113,7 +113,7 @@
                                 </td>
                                 <td>
                                     @if($item->photo)
-                                        <img src="{{ Storage::url('thumbnail/' . $item->photo) }}"/>
+                                        <img src="{{ Storage::disk('public')->url('thumbnail/' . $item->photo) }}"/>
                                     @endif
                                 </td>
                                 <td>{{ $item->name }}</td>

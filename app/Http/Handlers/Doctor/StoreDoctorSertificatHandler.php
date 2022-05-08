@@ -12,6 +12,8 @@ use App\Models\Clinic\Clinic;
 use App\Models\Clinic\ClinicImage;
 use App\Models\Doctor\Doctor;
 use App\Models\Doctor\DoctorSertificat;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 class StoreDoctorSertificatHandler extends BaseHandler
@@ -45,17 +47,22 @@ class StoreDoctorSertificatHandler extends BaseHandler
             if( $request->has('filename') )
             {
                 $originalImage= $request->file('filename');
+                $filename = Str::random(30);
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailPath = storage_path().'/app/public/thumbnail/';
-                $originalPath = storage_path().'/app/public/images/';
-                $thumbnailImage->save($originalPath.time().$originalImage->getClientOriginalName());
+                $thumbnailPath = Storage::disk('public')->path('thumbnail/');
+                $originalPath = Storage::disk('public')->path('images/');
+                $thumbnailImage->save($originalPath.$filename.'.'.$originalImage->getClientOriginalExtension());
+
+                /**
+                 * Thumb
+                 */
                 $thumbnailImage->fit(300,230);
-                $thumbnailImage->save($thumbnailPath.time().$originalImage->getClientOriginalName());
+                $thumbnailImage->save($thumbnailPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
                 /**
                  * Save to Table
                  */
-                $sertificat->image = time().$originalImage->getClientOriginalName();
+                $sertificat->image = $filename.'.'.$originalImage->getClientOriginalExtension();
                 $sertificat->save();
             }
 

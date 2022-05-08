@@ -8,6 +8,8 @@ use App\Http\Requests\Sales\StoreSaleRequest;
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogCategory;
 use App\Models\Sales\Sale;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 class StoreSaleHandler extends BaseHandler
@@ -40,17 +42,22 @@ class StoreSaleHandler extends BaseHandler
             if( $request->has('filename') )
             {
                 $originalImage= $request->file('filename');
+                $filename = Str::random(30);
                 $thumbnailImage = Image::make($originalImage);
-                $thumbnailPath = storage_path().'/app/public/thumbnail/';
-                $originalPath = storage_path().'/app/public/images/';
-                $thumbnailImage->save($originalPath.time().$originalImage->getClientOriginalName());
+                $thumbnailPath = Storage::disk('public')->path('thumbnail/');
+                $originalPath = Storage::disk('public')->path('images/');
+                $thumbnailImage->save($originalPath.$filename.'.'.$originalImage->getClientOriginalExtension());
+
+                /**
+                 * Thumb
+                 */
                 $thumbnailImage->fit(380,400);
-                $thumbnailImage->save($thumbnailPath.time().$originalImage->getClientOriginalName());
+                $thumbnailImage->save($thumbnailPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
                 /**
                  * Save to Table
                  */
-                $sale->photo = time().$originalImage->getClientOriginalName();
+                $sale->photo = $filename.'.'.$originalImage->getClientOriginalExtension();
                 $sale->save();
             }
 

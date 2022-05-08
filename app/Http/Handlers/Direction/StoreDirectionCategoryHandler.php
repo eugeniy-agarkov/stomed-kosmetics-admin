@@ -4,6 +4,8 @@ namespace App\Http\Handlers\Direction;
 use App\Http\Handlers\BaseHandler;
 use App\Http\Requests\Direction\StoreDirectionCategoryRequest;
 use App\Models\Direction\DirectionCategory;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 class StoreDirectionCategoryHandler extends BaseHandler
@@ -36,14 +38,15 @@ class StoreDirectionCategoryHandler extends BaseHandler
             if( $request->has('filename') )
             {
                 $originalImage= $request->file('filename');
+                $filename = Str::random(30);
                 $thumbnailImage = Image::make($originalImage);
-                $originalPath = storage_path().'/app/public/images/';
-                $thumbnailImage->save($originalPath.time().$originalImage->getClientOriginalName());
+                $originalPath = Storage::disk('public')->path('images/');
+                $thumbnailImage->save($originalPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
                 /**
                  * Save to Table
                  */
-                $category->image = time().$originalImage->getClientOriginalName();
+                $category->image = $filename.'.'.$originalImage->getClientOriginalExtension();
                 $category->save();
             }
 
