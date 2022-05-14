@@ -44,12 +44,13 @@ class StoreBlogHandler extends BaseHandler
                 $thumbnailImage = Image::make($originalImage);
                 $thumbnailPath = Storage::disk('public')->path('thumbnail/');
                 $originalPath = Storage::disk('public')->path('images/');
+                $thumbnailImage->fit(690,450);
                 $thumbnailImage->save($originalPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
                 /**
                  * Thumb
                  */
-                $thumbnailImage->fit(380,400);
+                $thumbnailImage->fit(380,410);
                 $thumbnailImage->save($thumbnailPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
                 /**

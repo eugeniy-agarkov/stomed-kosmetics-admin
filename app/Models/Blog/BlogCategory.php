@@ -30,6 +30,7 @@ class BlogCategory extends Model
         'name',
         'slug',
         'is_active',
+        'order',
     ];
 
     /**

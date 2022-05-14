@@ -123,7 +123,7 @@
 
                                     @if($model->image)
                                         <div class="mb-3">
-                                            <img src="{{ Storage::url('thumbnail/' . $model->image) }}" class="img-responsive" />
+                                            <img src="{{ Storage::disk('public')->url('thumbnail/' . $model->image) }}" class="img-responsive" />
                                         </div>
                                     @endif
                                     {!! html_input('file', 'filename', null, ['id' => 'image', 'multiple' => 'true']) !!}

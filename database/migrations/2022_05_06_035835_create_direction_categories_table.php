@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('title_menu')->nullable(false);
             $table->string('image')->nullable();
             $table->boolean('is_active')->default(1);
+            $table->unsignedSmallInteger('order')->default(0);
 
             $table->dateTime('published_at', 0)->default(\DB::raw('CURRENT_TIMESTAMP'));
 

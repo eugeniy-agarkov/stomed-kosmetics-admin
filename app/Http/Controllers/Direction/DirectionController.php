@@ -118,7 +118,7 @@ class DirectionController extends Controller
 
         if ($direction->delete())
         {
-            return redirect()->route('Direction.index')->with('message', __( 'Удалено' ));
+            return redirect()->route('direction.index')->with('message', __( 'Удалено' ));
         }
 
         return back()->withErrors([__('Не удалось удалить запись')]);

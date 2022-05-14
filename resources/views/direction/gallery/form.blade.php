@@ -162,7 +162,7 @@
                         <div class="form-group mb-4">
                             @if($model->image)
                                 <div class="mb-3">
-                                    <img src="{{ Storage::url('thumbnail/' . $model->image) }}" class="img-responsive" style="max-width: 300px;" />
+                                    <img src="{{ Storage::disk('public')->url('thumbnail/' . $model->image) }}" class="img-responsive" style="max-width: 300px;" />
                                 </div>
                             @endif
                             {!! html_input('file', 'filename', null, ['id' => 'file', 'multiple' => 'true']) !!}

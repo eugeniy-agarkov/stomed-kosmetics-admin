@@ -34,6 +34,7 @@ class Blog extends Model
         'content',
         'photo',
         'is_active',
+        'published_at',
     ];
 
     /**

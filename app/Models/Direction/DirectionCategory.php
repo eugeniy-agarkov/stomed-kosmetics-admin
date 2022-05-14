@@ -35,6 +35,7 @@ class DirectionCategory extends Model
         'slug',
         'image',
         'is_active',
+        'order',
     ];
 
     /**

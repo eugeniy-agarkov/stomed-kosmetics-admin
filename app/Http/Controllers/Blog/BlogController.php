@@ -52,7 +52,7 @@ class BlogController extends Controller
 
         if ($blog = $handler->process($request))
         {
-            return redirect()->route('blog.edit', $blog)->with('message', __( 'Сохранено' ));
+            return redirect()->route('blog.index')->with('message', __( 'Сохранено' ));
         }
 
         return back()->withErrors($handler->getErrors());
@@ -98,7 +98,7 @@ class BlogController extends Controller
 
         if ($blog = $handler->process($request, $blog))
         {
-            return redirect()->route('blog.index', $blog)->with('message', __( 'Сохранено' ));
+            return redirect()->route('blog.index')->with('message', __( 'Сохранено' ));
         }
 
         return back()->withErrors($handler->getErrors());

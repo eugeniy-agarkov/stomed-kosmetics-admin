@@ -117,7 +117,7 @@
                                 <div class="form-group">
                                     @if($model->image)
                                         <div class="mb-3">
-                                            <img src="{{ Storage::url('images/' . $model->image) }}" class="img-responsive" style="max-width: 400px;" />
+                                            <img src="{{ Storage::disk('public')->url('images/' . $model->image) }}" class="img-responsive" style="max-width: 400px;" />
                                         </div>
                                     @endif
                                     {!! html_input('file', 'filename', null, ['id' => 'file', 'multiple' => 'true']) !!}
@@ -199,6 +199,28 @@
 
                         </div>
                         <!-- end form group -->
+
+                        <hr>
+
+                        <!-- title -->
+                        <h6 class="card-title">
+                            {{ __( 'Прочее' ) }}
+                        </h6>
+                        <!-- end title -->
+
+                        <!-- group -->
+                        <div class="form-group mb-4">
+                            <label for="order">
+                                {{ __( 'Сортировка' ) }}
+                            </label>
+                            {!! html_input('text', 'order', $model->order, ['class' => 'form-control', 'id' => 'order']) !!}
+                            @error('order')
+                            <div class="invalid-feedback d-block" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </div>
+                            @enderror
+                        </div>
+                        <!-- end group -->
 
                         <hr>
 

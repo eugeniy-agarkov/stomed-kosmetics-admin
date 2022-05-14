@@ -318,7 +318,7 @@
                                         {{$photo->id}}
                                     </td>
                                     <td>
-                                        <img src="{{ Storage::url('thumbnail/' . $photo->photo) }}"/>
+                                        <img src="{{ Storage::disk('public')->url('thumbnail/' . $photo->photo) }}"/>
                                     </td>
                                     <td>
                                         <a href="{{ Storage::url('images/' . $photo->photo) }}" target="_blank">
