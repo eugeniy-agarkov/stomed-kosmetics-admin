@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -25,7 +26,7 @@ return new class extends Migration
             $table->string('condition')->nullable();
             $table->unsignedSmallInteger('order')->default(0);
 
-            $table->dateTime('published_at', 0)->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('published_at', 0)->default(Carbon::now());
 
             $table->foreign('blog_id', 'fk_news_prices_news_id')->references('id')->on('blogs')
                 ->onDelete('cascade');

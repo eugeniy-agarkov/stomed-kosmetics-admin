@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -23,7 +24,7 @@ return new class extends Migration
             $table->boolean('is_active')->default(1);
             $table->unsignedSmallInteger('order')->default(0);
 
-            $table->dateTime('published_at', 0)->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('published_at', 0)->default(Carbon::now());
             $table->softDeletes();
 
             $table->foreign('parent_id')->references('id')->on('sale_categories')

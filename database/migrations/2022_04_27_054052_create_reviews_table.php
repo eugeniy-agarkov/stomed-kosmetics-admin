@@ -3,6 +3,7 @@
 use App\Enums\ReviewsEnum;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -32,7 +33,7 @@ return new class extends Migration
             $table->foreign('doctor_id', 'fk_reviews_doctor_id')->references('id')->on('doctors')
                 ->onDelete('cascade');
 
-            $table->dateTime('published_at', 0)->default(\DB::raw('CURRENT_TIMESTAMP'));
+            $table->dateTime('published_at', 0)->default(Carbon::now());
             $table->softDeletes();
 
         });
