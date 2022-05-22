@@ -43,6 +43,7 @@ class Doctor extends Model
         'is_call_home',
         'degree',
         'is_active',
+        'is_top',
         'order',
     ];
 

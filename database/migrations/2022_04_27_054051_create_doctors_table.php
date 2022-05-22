@@ -31,6 +31,7 @@ return new class extends Migration
             $table->boolean('is_call_home')->default(DoctorEnum::NO);
             $table->string('degree')->nullable();
             $table->boolean('is_active')->default(1);
+            $table->boolean('is_top')->default(0);
             $table->unsignedSmallInteger('order')->default(0);
 
             $table->dateTime('published_at', 0)->default(Carbon::now());

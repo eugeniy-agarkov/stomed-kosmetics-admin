@@ -54,7 +54,7 @@ class DoctorController extends Controller
 
         if ($doctor = $handler->process($request))
         {
-            return redirect()->route('doctor.index')->with('message', __( 'Сохранено' ));
+            return redirect()->route('doctor.edit', $doctor)->with('message', __( 'Сохранено' ));
         }
 
         return back()->withErrors($handler->getErrors());

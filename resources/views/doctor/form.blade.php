@@ -335,6 +335,17 @@
                         </div>
                         <!-- end check -->
 
+                        <!-- check -->
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                                {!! html_hidden('is_top', 0) !!}
+                                {!! html_checkbox('is_top', $model->is_top, ['class' => 'form-check-input', 'value' => 1]) !!}
+                                {{ __( 'Топ' ) }}
+                                <i class="input-frame"></i>
+                            </label>
+                        </div>
+                        <!-- end check -->
+
                         <button type="submit" class="btn btn-primary">
                             {{ __( 'Сохранить' ) }}
                         </button>
