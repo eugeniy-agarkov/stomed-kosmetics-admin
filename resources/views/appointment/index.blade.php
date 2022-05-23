@@ -44,11 +44,10 @@
                         <thead>
                         <tr>
                             <th>{{ __( 'Дата' ) }}</th>
-                            <th>{{ __( 'Врач' ) }}</th>
+                            <th>{{ __( 'Форма' ) }}</th>
+                            <th>{{ __( 'Содержимое' ) }}</th>
                             <th>{{ __( 'Имя' ) }}</th>
                             <th>{{ __( 'Телефон' ) }}</th>
-                            <th>{{ __( 'Форма' ) }}</th>
-                            <th>{{ __( 'Источник' ) }}</th>
                             <th></th>
                         </tr>
                         </thead>
@@ -56,20 +55,14 @@
                         @foreach($model as $item)
                             <tr>
                                 <td>
-                                    {{$item->created_at->format('d.m.Y H:i')}}<br/>
+                                    {{$item->published_at->format('d.m.Y H:i')}}<br/>
                                 </td>
                                 <td>
-                                    @if($item->doctor)
-                                        <a href="{{route('doctor.edit', ['doctor' => $item->doctor])}}">{{$item->doctor->fio}}</a>
-                                    @endif
+                                    {{ \App\Enums\FormEnum::getName($item->form) }}
                                 </td>
+                                <td class="text-wrap">{{$item->content}}</td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->phone}}</td>
-                                <td>
-                                    {{\Illuminate\Support\Str::limit($item->source_title, 50)}}<br/>
-                                    {{\Illuminate\Support\Str::limit($item->source_url, 50)}}
-                                </td>
-                                <td>{{$item->getRefererType()}}</td>
                                 <td>
                                     <form action="{{route('appointment.destroy', ['appointment' => $item])}}" method="post" onsubmit="return confirm('Вы уверены?')">
                                         @method('delete')

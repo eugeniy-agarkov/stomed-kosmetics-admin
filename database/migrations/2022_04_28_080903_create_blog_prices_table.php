@@ -19,6 +19,7 @@ return new class extends Migration
 
             $table->increments('id');
             $table->unsignedInteger('blog_id')->nullable(false);
+            $table->unsignedInteger('clinic_id')->nullable();
             $table->string('code')->nullable()->index('idx_news_prices_code');
             $table->unsignedInteger('price')->nullable();
             $table->unsignedInteger('discount_price')->nullable();
@@ -29,6 +30,8 @@ return new class extends Migration
             $table->dateTime('published_at', 0)->default(Carbon::now());
 
             $table->foreign('blog_id', 'fk_news_prices_news_id')->references('id')->on('blogs')
+                ->onDelete('cascade');
+            $table->foreign('clinic_id', 'fk_clinic_clinic_id')->references('id')->on('clinics')
                 ->onDelete('cascade');
 
         });

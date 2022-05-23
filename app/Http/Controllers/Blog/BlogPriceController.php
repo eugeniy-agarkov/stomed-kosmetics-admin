@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog;
 use App\Http\Controllers\Controller;
 use App\Models\Blog\Blog;
 use App\Models\Blog\BlogPrice;
+use App\Models\Clinic\Clinic;
 use Illuminate\Http\Request;
 
 class BlogPriceController extends Controller
@@ -35,6 +36,7 @@ class BlogPriceController extends Controller
         return view('blog.price.form', [
             'blog' => $blog,
             'model' => $price,
+            'clinics' => Clinic::all(),
         ]);
 
     }
@@ -85,6 +87,7 @@ class BlogPriceController extends Controller
         return view('blog.price.form', [
             'blog' => $blog,
             'model' => $price,
+            'clinics' => Clinic::all(),
         ]);
 
     }

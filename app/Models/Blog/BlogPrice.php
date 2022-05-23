@@ -20,7 +20,8 @@ class BlogPrice extends Model
      * @var string[]
      */
     protected $fillable = [
-        'news_id',
+        'blog_id',
+        'clinic_id',
         'code',
         'price',
         'discount_price',

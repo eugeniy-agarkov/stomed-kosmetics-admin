@@ -85,8 +85,15 @@ class AppointmentController extends Controller
      * @param  \App\Models\Form  $form
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Form $form)
+    public function destroy(Form $appointment)
     {
-        //
+
+        if ($appointment->delete())
+        {
+            return redirect()->route('appointment.index')->with('message', __( 'Удалено' ));
+        }
+
+        return back()->withErrors([__('Не удалось удалить запись')]);
+
     }
 }
