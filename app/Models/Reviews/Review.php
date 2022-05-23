@@ -31,6 +31,7 @@ class Review extends Model
         'phone',
         'content',
         'answer',
+        'original',
         'is_active',
         'type',
         'published_at',

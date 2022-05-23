@@ -21,6 +21,7 @@ class SalePrice extends Model
      */
     protected $fillable = [
         'sale_id',
+        'clinic_id',
         'code',
         'price',
         'discount_price',

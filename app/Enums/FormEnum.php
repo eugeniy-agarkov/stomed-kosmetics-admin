@@ -15,11 +15,13 @@ final class FormEnum extends Enum
     const FEEDBACK = 1;
     const APPOINTMENTS = 2;
     const DIRECTION = 3;
+    const APPLICATION = 4;
 
     public static $name = [
         self::FEEDBACK => 'Обратный звонок',
         self::APPOINTMENTS => 'Online запись',
         self::DIRECTION => 'Заявка на услугу',
+        self::APPLICATION => 'Заявка',
     ];
 
     /**

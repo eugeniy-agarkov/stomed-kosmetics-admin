@@ -227,6 +227,25 @@
                     <div class="card-body">
 
                         <!-- title -->
+                        <h6 class="card-title pt-3">
+                            {{ __( 'Оригинал отзыва' ) }}
+                        </h6>
+                        <!-- end title -->
+
+                        <!-- group -->
+                        <div class="form-group mb-4">
+                            @if($model->original)
+                                <div class="mb-3">
+                                    <img src="{{ Storage::disk('public')->url('thumbnail/' . $model->original) }}" class="img-responsive" />
+                                </div>
+                            @endif
+                            {!! html_input('file', 'filename', null, ['id' => 'file_original', 'multiple' => 'true']) !!}
+                        </div>
+                        <!-- end group -->
+
+                        <hr>
+
+                        <!-- title -->
                         <h6 class="card-title">
                             {{ __( 'Действие' ) }}
                         </h6>

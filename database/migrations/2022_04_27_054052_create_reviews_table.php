@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('phone')->nullable();
             $table->text('content')->nullable(false);
             $table->longText('answer')->nullable();
+            $table->string('original')->nullable();
             $table->boolean('is_active')->default(0);
             $table->boolean('type')->default(ReviewsEnum::POSITIVE);
 

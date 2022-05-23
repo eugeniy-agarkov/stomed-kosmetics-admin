@@ -2,6 +2,7 @@
 namespace App\Http\Controllers\Sales;
 
 use App\Http\Controllers\Controller;
+use App\Models\Clinic\Clinic;
 use App\Models\Sales\Sale;
 use App\Models\Sales\SalePrice;
 use Illuminate\Http\Request;
@@ -34,6 +35,7 @@ class SalePriceController extends Controller
         return view('sale.price.form', [
             'sale' => $sale,
             'model' => $price,
+            'clinics' => Clinic::all(),
         ]);
 
     }
@@ -84,6 +86,7 @@ class SalePriceController extends Controller
         return view('sale.price.form', [
             'sale' => $sale,
             'model' => $price,
+            'clinics' => Clinic::all(),
         ]);
 
     }

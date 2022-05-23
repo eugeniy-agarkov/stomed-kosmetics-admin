@@ -50,7 +50,7 @@ class StoreBlogHandler extends BaseHandler
                 /**
                  * Thumb
                  */
-                $thumbnailImage->fit(380,410);
+                $thumbnailImage->fit(290,310);
                 $thumbnailImage->save($thumbnailPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
                 /**

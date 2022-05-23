@@ -68,7 +68,7 @@
                         <div class="row">
 
                             <!-- col -->
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
 
                                 <!-- group -->
                                 <div class="form-group">
@@ -88,7 +88,27 @@
                             <!-- end col -->
 
                             <!-- col -->
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="clinic_id">
+                                        {{ __( 'Клиника' ) }}
+                                    </label>
+                                    {!! html_select('clinic_id', old('clinic_id', $model->clinic_id), [null => __( 'Нет' )] + list_data($clinics, 'id', 'name'), ['class' => 'custom-select', 'id' => 'clinic']) !!}
+                                    @error('clinic_id')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-6">
 
                                 <!-- group -->
                                 <div class="form-group">
@@ -108,7 +128,7 @@
                             <!-- end col -->
 
                             <!-- col -->
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
 
                                 <!-- group -->
                                 <div class="form-group">
@@ -199,7 +219,7 @@
                             <label for="description">
                                 {{ __( 'Сортировка' ) }}
                             </label>
-                            {!! html_input('text', 'order', $model->order, ['class' => 'form-control', 'id' => 'order']) !!}
+                            {!! html_input('text', 'order', ($model->id) ? $model->order : 0, ['class' => 'form-control', 'id' => 'order']) !!}
                             @error('order')
                             <div class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>

@@ -4,3 +4,8 @@
 .tab-content .tab-pane.active {
     display: block;
 }
+.img-responsive {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
