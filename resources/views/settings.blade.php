@@ -199,6 +199,21 @@
                                 <div class="row">
 
                                     <!-- col -->
+                                    <div class="col-lg-12">
+
+                                        <!-- group -->
+                                        <div class="form-group">
+                                            <label for="type">
+                                                {{ __( 'Основной адрес' ) }}
+                                            </label>
+                                            {!! html_input('text', 'settings[general_address]', isset($model->general_address) ? $model->general_address : '', ['class' => 'form-control', 'id' => 'general_address']) !!}
+                                        </div>
+                                        <!-- end group -->
+
+                                    </div>
+                                    <!-- end col -->
+
+                                    <!-- col -->
                                     <div class="col-lg-6">
 
                                         <!-- group -->

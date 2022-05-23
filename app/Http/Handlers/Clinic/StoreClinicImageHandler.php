@@ -53,7 +53,7 @@ class StoreClinicImageHandler extends BaseHandler
                 /**
                  * Thumb
                  */
-                $thumbnailImage->fit(400,400);
+                $thumbnailImage->fit(500,330);
                 $thumbnailImage->save($thumbnailPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
                 /**

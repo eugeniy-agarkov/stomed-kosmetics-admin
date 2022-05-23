@@ -53,7 +53,7 @@
                         <tbody>
                         @foreach($model as $item)
                             <tr>
-                                <td>{{$item->created_at->format('d.m.Y H:i')}}<br/></td>
+                                <td>{{$item->published_at->format('d.m.Y H:i')}}<br/></td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->phone}}</td>
                                 <td class="nowrap-normal">{{$item->content}}</td>

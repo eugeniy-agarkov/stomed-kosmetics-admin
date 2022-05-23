@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedInteger('clinic_id')->nullable();
             $table->unsignedInteger('doctor_id')->nullable();
             $table->string('fio')->nullable(false);
-            $table->string('phone')->nullable(false);
+            $table->string('phone')->nullable();
             $table->text('content')->nullable(false);
             $table->longText('answer')->nullable();
             $table->boolean('is_active')->default(0);

@@ -12,7 +12,7 @@ class StoreReviewRequest extends FormRequest
             'doctor_id' => 'nullable|integer|exists:doctors,id',
             'published_at' => 'required|date_format:m/d/Y',
             'fio' => 'required|max:255',
-            'phone' => 'required|max:255',
+            'phone' => 'nullable|max:255',
             'content' => 'required',
             'is_active' => 'integer'
         ];
