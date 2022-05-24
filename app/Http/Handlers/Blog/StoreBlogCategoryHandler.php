@@ -33,7 +33,7 @@ class StoreBlogCategoryHandler extends BaseHandler
 
         } catch (\Throwable $e) {
 
-            $this->setErrors('Не удалось сохранить запись');
+            $this->setErrors($e->getMessage());
             return null;
 
         }

@@ -89,4 +89,12 @@ class Direction extends Model
         return $this->hasMany(Gallery::class);
     }
 
+    /**
+     * @return HasMany
+     */
+    public function prices(): HasMany
+    {
+        return $this->hasMany(DirectionPrice::class);
+    }
+
 }

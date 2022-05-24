@@ -137,7 +137,7 @@
                 <a href="{{ route('direction.index') }}" class="nav-link">
                     <i class="link-icon" data-feather="columns"></i>
                     <span class="link-title">
-                        {{ __( 'Направления' ) }}
+                        {{ __( 'Услуги' ) }}
                     </span>
                 </a>
                 <ul class="nav sub-menu">

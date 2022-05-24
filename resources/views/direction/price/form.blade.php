@@ -1,11 +1,7 @@
 @extends('layouts.app')
 
 @section('meta')
-    @if($model->id)
-        <title>{{$model->name}}</title>
-    @else
-        <title>{{ __( 'Добавление новости' ) }}</title>
-    @endif
+    <title>{{ __( 'Добавление цены' ) }} {{$direction->name}}</title>
 @endsection
 
 @section('content')
@@ -21,17 +17,27 @@
                 </a>
             </li>
             <li class="breadcrumb-item">
-                <a href="{{route('blog.index')}}">
-                    {{ __( 'Новости' ) }}
+                <a href="{{route('direction.index')}}">
+                    {{ __( 'Услуги' ) }}
+                </a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+                <a href="{{route('direction.edit', ['direction' => $direction])}}">
+                    {{$direction->name}}
+                </a>
+            </li>
+            <li class="breadcrumb-item" aria-current="page">
+                <a href="{{route('direction.prices.index', ['direction' => $direction])}}">
+                    {{ __( 'Цены' ) }}
                 </a>
             </li>
             @if($model->id)
                 <li class="breadcrumb-item active" aria-current="page">
-                    {{$model->name}}
+                    {{ __( 'Редактирование цены' ) }}
                 </li>
             @else
                 <li class="breadcrumb-item active" aria-current="page">
-                    {{ __( 'Добавление новости' ) }}
+                    {{ __( 'Добавление цены' ) }}
                 </li>
             @endif
         </ol>
@@ -40,15 +46,13 @@
     </nav>
     <!-- End Breadcrumbs -->
 
-    @include('partials.message')
-
-    @includeWhen($model->id, 'blog.tabs', ['blog' => $model])
+    @include('direction.tabs', ['model' => $direction])
 
     <!-- form -->
-    <form action="{{route('blog.' . ($model->id ? 'update' : 'store'), ['blog' => $model])}}" method="post" enctype="multipart/form-data">
-        @csrf
+    <form action="{{route('direction.prices.' . ($model->id ? 'update' : 'store'), ['direction' => $direction, 'price' => $model])}}" method="post" enctype="multipart/form-data">
+    @csrf
 
-        <!-- row -->
+    <!-- row -->
         <div class="row">
 
             <!-- col -->
@@ -64,15 +68,15 @@
                         <div class="row">
 
                             <!-- col -->
-                            <div class="col-lg-8">
+                            <div class="col-lg-6">
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="name">
-                                        {{ __( 'Наименование' ) }}
+                                    <label for="code">
+                                        {{ __( 'Код 1C' ) }}
                                     </label>
-                                    {!! html_input('text', 'name', old('name', $model->name), ['class' => 'form-control', 'id' => 'name']) !!}
-                                    @error('name')
+                                    {!! html_input('text', 'code', $model->code, ['class' => 'form-control', 'id' => 'code']) !!}
+                                    @error('code')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -84,15 +88,15 @@
                             <!-- end col -->
 
                             <!-- col -->
-                            <div class="col-lg-4">
+                            <div class="col-lg-6">
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="category_id">
-                                        {{ __( 'Категория' ) }}
+                                    <label for="clinic_id">
+                                        {{ __( 'Клиника' ) }}
                                     </label>
-                                    {!! html_select('category_id', old('category_id', $model->category_id), list_data($categories, 'id', 'name'), ['class' => 'custom-select', 'id' => 'category_id']) !!}
-                                    @error('category_id')
+                                    {!! html_select('clinic_id', old('clinic_id', $model->clinic_id), [null => __( 'Нет' )] + list_data($clinics, 'id', 'name'), ['class' => 'custom-select', 'id' => 'clinic']) !!}
+                                    @error('clinic_id')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -104,15 +108,15 @@
                             <!-- end col -->
 
                             <!-- col -->
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="excerpt">
-                                        {{ __( 'Краткий текст' ) }}
+                                    <label for="price">
+                                        {{ __( 'Цена' ) }}
                                     </label>
-                                    {!! html_textarea('excerpt', old('excerpt', $model->excerpt), ['class' => 'form-control', 'id'=>'excerpt', 'rows' => 7]) !!}
-                                    @error('excerpt')
+                                    {!! html_input('text', 'price', $model->price, ['class' => 'form-control', 'id' => 'price']) !!}
+                                    @error('price')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -124,15 +128,55 @@
                             <!-- end col -->
 
                             <!-- col -->
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="content">
-                                        {{ __( 'Текст' ) }}
+                                    <label for="discount_price">
+                                        {{ __( 'Цена со скидкой' ) }}
                                     </label>
-                                    {!! html_textarea('content', old('content', $model->content), ['class' => 'form-control custom-editor', 'id'=>'content']) !!}
-                                    @error('content')
+                                    {!! html_input('text', 'discount_price', $model->discount_price, ['class' => 'form-control', 'id' => 'discount_price']) !!}
+                                    @error('discount_price')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-6">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="description">
+                                        {{ __( 'Описание' ) }}
+                                    </label>
+                                    {!! html_textarea('description', $model->description, ['class' => 'form-control', 'id' => 'description', 'rows' => 6]) !!}
+                                    @error('description')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-6">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="description">
+                                        {{ __( 'Условие акции' ) }}
+                                    </label>
+                                    {!! html_textarea('condition', $model->condition, ['class' => 'form-control', 'id' => 'condition', 'rows' => 6]) !!}
+                                    @error('condition')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -172,9 +216,11 @@
 
                         <!-- group -->
                         <div class="form-group mb-4">
-                            <label for="published_at">{{ __( 'Дата публикации' ) }}</label>
-                            {!! html_input('text', 'published_at', $model->published_at ? $model->published_at->format('m/d/Y') : now()->format('m/d/Y'), ['class' => 'form-control datepicker', 'id' => 'published_at', 'autocomplete' => 'off']) !!}
-                            @error('published_at')
+                            <label for="description">
+                                {{ __( 'Сортировка' ) }}
+                            </label>
+                            {!! html_input('text', 'order', ($model->id) ? $model->order : 0, ['class' => 'form-control', 'id' => 'order']) !!}
+                            @error('order')
                             <div class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
                             </div>
@@ -186,44 +232,15 @@
 
                         <!-- title -->
                         <h6 class="card-title pt-3">
-                            {{ __( 'Изображение' ) }}
-                        </h6>
-                        <!-- end title -->
-
-                        <!-- group -->
-                        <div class="form-group mb-4">
-                            @if($model->photo)
-                                <div class="mb-3">
-                                    <img src="{{ Storage::disk('public')->url('thumbnail/' . $model->photo) }}" class="img-responsive" />
-                                </div>
-                            @endif
-                            {!! html_input('file', 'filename', null, ['id' => 'file', 'multiple' => 'true']) !!}
-                        </div>
-                        <!-- end group -->
-
-                        <hr>
-
-                        <!-- title -->
-                        <h6 class="card-title pt-3">
                             {{ __( 'Действие' ) }}
                         </h6>
                         <!-- end title -->
-
-                        <!-- check -->
-                        <div class="form-check form-check-flat form-check-primary">
-                            <label class="form-check-label">
-                                {!! html_hidden('is_active', 0) !!}
-                                {!! html_checkbox('is_active', $model->is_active, ['class' => 'form-check-input', 'value' => 1]) !!} Активный
-                                <i class="input-frame"></i>
-                            </label>
-                        </div>
-                        <!-- end check -->
 
                         <button type="submit" class="btn btn-primary">
                             {{ __( 'Сохранить' ) }}
                         </button>
 
-                        <a href="{{ route('blog.index') }}" class="btn btn-primary">
+                        <a href="{{ route('direction.prices.index', ['direction' => $direction]) }}" class="btn btn-primary">
                             {{ __( 'Отмена' ) }}
                         </a>
 
@@ -238,10 +255,7 @@
 
         </div>
         <!-- end row -->
-
     </form>
     <!-- end form -->
-
-    @includeWhen($model->id, 'partials.editor', ['slug' => $model->slug])
 
 @endsection

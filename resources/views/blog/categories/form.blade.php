@@ -134,7 +134,7 @@
                             <label for="order">
                                 {{ __( 'Сортировка' ) }}
                             </label>
-                            {!! html_input('text', 'order', $model->order, ['class' => 'form-control', 'id' => 'order']) !!}
+                            {!! html_input('text', 'order', ($model->id) ? $model->order : 0, ['class' => 'form-control', 'id' => 'order']) !!}
                             @error('order')
                             <div class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>

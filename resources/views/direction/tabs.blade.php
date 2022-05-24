@@ -16,6 +16,11 @@
         </a>
     </li>
     <li class="nav-item">
+        <a class="nav-link {{request()->routeIs(['direction.prices.index', 'direction.prices.*']) ? 'active' : ''}}" href="{{route('direction.prices.index', ['direction' => $model])}}">
+            {{ __( 'Цены' ) }}
+        </a>
+    </li>
+    <li class="nav-item">
         <a class="nav-link {{request()->routeIs('direction.page.edit') ? 'active' : ''}}" href="{{route('direction.page.edit', $model)}}">
             {{ __( 'SEO данные' ) }}
         </a>

@@ -61,4 +61,14 @@ Route::group(
     Route::delete('/{direction}/gallery/{image}', 'DirectionGalleryController@destroy')->name('direction.gallery.destroy');
     Route::post('/{direction}/gallery/{image}', 'DirectionGalleryController@update')->name('direction.gallery.update');
 
+    /**
+     * Prices
+     */
+    Route::get('/{direction}/prices', 'DirectionPriceController@index')->name('direction.prices.index');
+    Route::get('/{direction}/prices/create', 'DirectionPriceController@create')->name('direction.prices.create');
+    Route::get('/{direction}/prices/{price}', 'DirectionPriceController@edit')->name('direction.prices.edit');
+    Route::post('/{direction}/prices', 'DirectionPriceController@store')->name('direction.prices.store');
+    Route::post('/{direction}/prices/{price}', 'DirectionPriceController@update')->name('direction.prices.update');
+    Route::delete('/{direction}/prices/{price}', 'DirectionPriceController@destroy')->name('direction.prices.destroy');
+
 });

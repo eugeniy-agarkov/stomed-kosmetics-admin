@@ -27,6 +27,7 @@ return new class extends Migration
             $table->text('excerpt')->nullable();
             $table->string('title_excerpt')->nullable();
             $table->longText('description')->nullable();
+            $table->unsignedInteger('price')->nullable();
             $table->boolean('is_top')->default(true);
             $table->boolean('is_active')->default(true);
             $table->unsignedSmallInteger('order')->default(0);
