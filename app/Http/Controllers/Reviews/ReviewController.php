@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Handlers\Reviews\StoreReviewHandler;
 use App\Http\Requests\Reviews\StoreReviewRequest;
 use App\Models\Clinic\Clinic;
+use App\Models\Direction\Direction;
 use App\Models\Doctor\Doctor;
 use App\Models\Reviews\Review;
 
@@ -17,12 +18,13 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Review $review, Doctor $doctors)
+    public function index(Review $review, Doctor $doctors, Direction $direction)
     {
 
         return view('reviews.index', [
             'model' => $review->paginate(10),
             'doctors' => $doctors->all(),
+            'directions' => $direction->all()
         ]);
 
     }
@@ -32,13 +34,14 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Review $review, Clinic $clinic, Doctor $doctor)
+    public function create(Review $review, Clinic $clinic, Doctor $doctor, Direction $direction)
     {
 
         return view('reviews.form', [
             'model' => $review,
             'clinics' => $clinic->all(),
             'doctors' => $doctor->all(),
+            'directions' => $direction->all(),
             'type' => ReviewsEnum::getName(),
         ]);
 
@@ -79,13 +82,14 @@ class ReviewController extends Controller
      * @param  \App\Models\Review  $review
      * @return \Illuminate\Http\Response
      */
-    public function edit(Review $review, Clinic $clinic, Doctor $doctor)
+    public function edit(Review $review, Clinic $clinic, Doctor $doctor, Direction $direction)
     {
 
         return view('reviews.form', [
             'model' => $review,
             'clinics' => $clinic->all(),
             'doctors' => $doctor->all(),
+            'directions' => $direction->all(),
             'type' => ReviewsEnum::getName(),
             'photos' => $review->photos,
         ]);

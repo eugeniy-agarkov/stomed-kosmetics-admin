@@ -62,12 +62,12 @@
                         <div class="row">
 
                             <!-- col -->
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="clinic">{{ __( 'Клиника' ) }}</label>
-                                    {!! html_select('clinic_id', old('clinic_id', $model->clinic_id), [null => __( 'Нет' )] + list_data($clinics, 'id', 'name'), ['class' => 'custom-select', 'id' => 'clinic']) !!}
+                                    <label for="clinic_id">{{ __( 'Клиника' ) }}</label>
+                                    {!! html_select('clinic_id', old('clinic_id', $model->clinic_id), [null => __( 'Нет' )] + list_data($clinics, 'id', 'name'), ['class' => 'custom-select', 'id' => 'clinic_id']) !!}
                                     @error('clinic_id')
                                         <div class="invalid-feedback d-block" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -80,13 +80,31 @@
                             <!-- end col -->
 
                             <!-- col -->
-                            <div class="col-lg-6">
+                            <div class="col-lg-4">
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="doctor">{{ __( 'Врач' ) }}</label>
-                                    {!! html_select('doctor_id', old('doctor_id', $model->doctor_id), [null => __( 'Нет' )] + list_data($doctors, 'id', 'fio'), ['class' => 'custom-select', 'id' => 'doctor']) !!}
+                                    <label for="doctor_id">{{ __( 'Врач' ) }}</label>
+                                    {!! html_select('doctor_id', old('doctor_id', $model->doctor_id), [null => __( 'Нет' )] + list_data($doctors, 'id', 'fio'), ['class' => 'custom-select', 'id' => 'doctor_id']) !!}
                                     @error('doctor_id')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-4">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="direction_id">{{ __( 'Услуга' ) }}</label>
+                                    {!! html_select('direction_id', old('direction_id', $model->direction_id), [null => __( 'Нет' )] + list_data($directions, 'id', 'name'), ['class' => 'custom-select', 'id' => 'direction_id']) !!}
+                                    @error('direction_id')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>

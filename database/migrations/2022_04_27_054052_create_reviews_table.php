@@ -21,6 +21,7 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedInteger('clinic_id')->nullable();
             $table->unsignedInteger('doctor_id')->nullable();
+            $table->unsignedInteger('direction_id')->nullable();
             $table->string('fio')->nullable(false);
             $table->string('phone')->nullable();
             $table->text('content')->nullable(false);
@@ -32,6 +33,8 @@ return new class extends Migration
             $table->foreign('clinic_id', 'fk_reviews_clinic_id')->references('id')->on('clinics')
                 ->onDelete('cascade');
             $table->foreign('doctor_id', 'fk_reviews_doctor_id')->references('id')->on('doctors')
+                ->onDelete('cascade');
+            $table->foreign('direction_id', 'fk_reviews_direction_id')->references('id')->on('directions')
                 ->onDelete('cascade');
 
             $table->dateTime('published_at', 0)->default(Carbon::now());

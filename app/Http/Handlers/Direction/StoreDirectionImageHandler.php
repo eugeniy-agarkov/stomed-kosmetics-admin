@@ -52,6 +52,9 @@ class StoreDirectionImageHandler extends BaseHandler
                 $thumbnailImage->fit(400,400);
                 $thumbnailImage->save($thumbnailPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
+                $thumbnailImage->fit(810,530);
+                $thumbnailImage->save($thumbnailPath.'single-'.$filename.'.'.$originalImage->getClientOriginalExtension());
+
                 /**
                  * Save to Table
                  */

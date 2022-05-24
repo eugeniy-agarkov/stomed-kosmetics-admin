@@ -97,9 +97,9 @@
                         <thead>
                         <tr>
                             <th>{{ __( 'Дата' ) }}</th>
-                            <th>{{ __( 'Врач' ) }}</th>
                             <th>{{ __( 'ФИО' ) }}</th>
                             <th>{{ __( 'Тел' ) }}</th>
+                            <th>{{ __( 'Тип' ) }}</th>
                             <th>{{ __( 'Статус' ) }}</th>
                             <th></th>
                             <th></th>
@@ -113,13 +113,19 @@
                                         {{$item->published_at->format('d.m.Y')}}
                                     @endif
                                 </td>
-                                <td>
-                                    @if($item->doctor)
-                                        {{$item->doctor->fio}}
-                                    @endif
-                                </td>
                                 <td>{{$item->fio}}</td>
                                 <td>{{$item->phone}}</td>
+                                <td>
+                                    @if( $item->type == \App\Enums\ReviewsEnum::POSITIVE )
+                                        <span class="badge badge-success">
+                                            {{ \App\Enums\ReviewsEnum::getName($item->type) }}
+                                        </span>
+                                    @else
+                                        <span class="badge badge-danger">
+                                            {{ \App\Enums\ReviewsEnum::getName($item->type) }}
+                                        </span>
+                                    @endif
+                                </td>
                                 <td>
                                     @if( $item->is_active )
                                         <span class="badge badge-success">

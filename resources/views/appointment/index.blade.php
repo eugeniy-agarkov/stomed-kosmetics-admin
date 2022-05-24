@@ -60,7 +60,12 @@
                                 <td>
                                     {{ \App\Enums\FormEnum::getName($item->form) }}
                                 </td>
-                                <td class="text-wrap">{{$item->content}}</td>
+                                <td class="text-wrap">
+                                    @if( $item->direction_id )
+                                       <div class="mb-1">{{ __( 'Услуга' ) }}: {{ $item->direction->name }}</div>
+                                    @endif
+                                    {{$item->content}}
+                                </td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->phone}}</td>
                                 <td>

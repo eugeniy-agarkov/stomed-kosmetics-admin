@@ -27,6 +27,7 @@ class Review extends Model
     protected $fillable = [
         'clinic_id',
         'doctor_id',
+        'direction_id',
         'fio',
         'phone',
         'content',

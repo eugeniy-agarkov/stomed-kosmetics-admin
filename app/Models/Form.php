@@ -2,10 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Direction\Direction;
+use App\Models\Doctor\Doctor;
 use App\Queries\Form\FormQuery;
 use App\Scopes\Form\FormScope;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Form extends Model
 {
@@ -41,6 +44,22 @@ class Form extends Model
         parent::boot();
         static::addGlobalScope(new FormScope());
 
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function doctor(): HasOne
+    {
+        return $this->hasOne(Doctor::class);
+    }
+
+    /**
+     * @return HasOne
+     */
+    public function direction(): HasOne
+    {
+        return $this->hasOne(Direction::class, 'id', 'direction_id');
     }
 
 }

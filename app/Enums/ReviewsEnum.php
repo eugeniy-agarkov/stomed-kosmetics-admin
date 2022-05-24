@@ -25,6 +25,6 @@ final class ReviewsEnum extends Enum
      */
     public static function getName(int $key = 0): array|string
     {
-        return $key <> 0 ? self::$name[1] : self::$name;
+        return $key <> 0 ? self::$name[$key] : self::$name;
     }
 }
