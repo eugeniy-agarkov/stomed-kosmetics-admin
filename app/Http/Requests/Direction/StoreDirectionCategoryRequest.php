@@ -12,4 +12,13 @@ class StoreDirectionCategoryRequest extends FormRequest
             'title_menu' => 'required|max:255',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Поле Наименование не может быть пустым',
+            'title_menu.required' => 'Поле Наименование в меню не может быть пустым',
+        ];
+    }
+
 }

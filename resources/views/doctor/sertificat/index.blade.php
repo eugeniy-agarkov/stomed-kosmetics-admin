@@ -106,7 +106,7 @@
                     </table>
                     <!-- end table -->
 
-                    {{$model->appends(request()->all())->links()}}
+                    {{$model->appends(request()->all())->links('vendor.pagination.bootstrap-4')}}
 
                 </div>
                 <!-- end responsive -->

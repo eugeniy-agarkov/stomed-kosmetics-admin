@@ -17,4 +17,18 @@ class StoreReviewRequest extends FormRequest
             'is_active' => 'integer'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'clinic_id.nullable' => 'Выберите клинику',
+            'doctor_id.nullable' => 'Выберите доктора',
+            'published_at.required' => 'Укажите дату публикации',
+            'published_at.date_format' => 'Не верный формат даты',
+            'fio.required' => 'Укажите ФИО',
+            'fio.max' => 'Поле ФИО имеет максимальное кол.-во символов 255',
+            'content.required' => 'Поле Содержимое не может быть пустым',
+        ];
+    }
+
 }

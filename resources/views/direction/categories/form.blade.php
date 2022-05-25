@@ -22,7 +22,7 @@
             </li>
             <li class="breadcrumb-item">
                 <a href="{{route('direction.index')}}">
-                    {{ __( 'Направления' ) }}
+                    {{ __( 'Услуги' ) }}
                 </a>
             </li>
             <li class="breadcrumb-item">
@@ -91,7 +91,7 @@
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="title_menu">{{ __( 'Наименование' ) }}</label>
+                                    <label for="title_menu">{{ __( 'Наименование в меню' ) }}</label>
                                     {!! html_input('text', 'title_menu', old('title_menu', $model->title_menu), ['class' => 'form-control', 'id' => 'title_menu']) !!}
                                     @error('title_menu')
                                     <div class="invalid-feedback d-block" role="alert">

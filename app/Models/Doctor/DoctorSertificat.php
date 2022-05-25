@@ -25,6 +25,7 @@ class DoctorSertificat extends Model
      */
     protected $fillable = [
         'doctor_id',
+        'name',
         'image',
         'alt',
         'title',

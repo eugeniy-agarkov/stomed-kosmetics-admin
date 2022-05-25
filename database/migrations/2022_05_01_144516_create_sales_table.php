@@ -27,6 +27,7 @@ return new class extends Migration
             $table->unsignedSmallInteger('order')->default(0);
             $table->dateTime('date_end')->nullable();
             $table->boolean('is_active')->default(1);
+            $table->boolean('is_home_banner')->default(0);
 
             $table->dateTime('published_at', 0)->default(Carbon::now());
             $table->softDeletes();

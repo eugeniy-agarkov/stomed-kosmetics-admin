@@ -51,7 +51,7 @@ class StoreSaleHandler extends BaseHandler
                 /**
                  * Thumb
                  */
-                $thumbnailImage->fit(380,400);
+                $thumbnailImage->fit(385,250);
                 $thumbnailImage->save($thumbnailPath.$filename.'.'.$originalImage->getClientOriginalExtension());
 
                 /**

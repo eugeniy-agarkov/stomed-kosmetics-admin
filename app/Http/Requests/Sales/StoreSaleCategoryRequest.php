@@ -12,4 +12,12 @@ class StoreSaleCategoryRequest extends FormRequest
             'published_at' => 'nullable|date_format:d.m.Y'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Поле Наименование не может быть пустым',
+        ];
+    }
+
 }

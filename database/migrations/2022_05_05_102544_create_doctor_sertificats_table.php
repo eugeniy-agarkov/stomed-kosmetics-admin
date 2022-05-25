@@ -19,6 +19,7 @@ return new class extends Migration
 
             $table->increments('id');
             $table->unsignedInteger('doctor_id')->nullable(false);
+            $table->string('name')->nullable();
             $table->string('image')->nullable();
             $table->string('alt')->nullable();
             $table->string('title')->nullable();

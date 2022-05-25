@@ -61,7 +61,7 @@ class Direction extends Model
     public function category(): HasOne
     {
 
-        return $this->hasOne(DirectionCategory::class);
+        return $this->hasOne(DirectionCategory::class, 'id', 'category_id');
 
     }
 

@@ -74,13 +74,31 @@
                         <div class="row">
 
                             <!-- col -->
+                            <div class="col-lg-12">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="name">{{ __( 'Заголовок' ) }}</label>
+                                    {!! html_input('text', 'name', old('name', $model->name), ['class' => 'form-control', 'id' => 'name']) !!}
+                                    @error('name')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
                             <div class="col-lg-6">
 
                                 <!-- group -->
                                 <div class="form-group">
                                     <label for="alt">{{ __( 'Alt' ) }}</label>
                                     {!! html_input('text', 'alt', old('alt', $model->alt), ['class' => 'form-control', 'id' => 'alt']) !!}
-                                    @error('name')
+                                    @error('alt')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -98,7 +116,7 @@
                                 <div class="form-group">
                                     <label for="title">{{ __( 'Title' ) }}</label>
                                     {!! html_input('text', 'title', old('title', $model->title), ['class' => 'form-control', 'id' => 'title']) !!}
-                                    @error('name')
+                                    @error('title')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>

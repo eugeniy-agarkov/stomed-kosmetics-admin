@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-                {{ __( 'Направления' ) }}
+                {{ __( 'Услуги' ) }}
             </li>
         </ol>
         <!-- end breadcrumb -->
@@ -160,7 +160,7 @@
                     </table>
                     <!-- end table -->
 
-                    {{$model->appends(request()->all())->links()}}
+                    {{$model->appends(request()->all())->links('vendor.pagination.bootstrap-4')}}
 
                 </div>
                 <!-- end responsive -->

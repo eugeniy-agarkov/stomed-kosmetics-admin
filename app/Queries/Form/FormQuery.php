@@ -22,7 +22,7 @@ class FormQuery extends Builder
      */
     public function whereAppointment(): self
     {
-        $this->whereIn('form', [FormEnum::APPOINTMENTS, FormEnum::DIRECTION, FormEnum::APPLICATION]);
+        $this->whereIn('form', [FormEnum::APPOINTMENTS, FormEnum::DIRECTION, FormEnum::APPLICATION, FormEnum::DOCTORS]);
 
         return $this;
     }

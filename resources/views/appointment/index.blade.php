@@ -64,7 +64,7 @@
                                     @if( $item->direction_id )
                                        <div class="mb-1">{{ __( 'Услуга' ) }}: {{ $item->direction->name }}</div>
                                     @endif
-                                    {{$item->content}}
+                                    {!! $item->content !!}
                                 </td>
                                 <td>{{$item->name}}</td>
                                 <td>{{$item->phone}}</td>
@@ -82,7 +82,7 @@
                     <!-- end table -->
 
                     <!-- pagination -->
-                    {{$model->appends(request()->all())->links()}}
+                    {{$model->appends(request()->all())->links('vendor.pagination.bootstrap-4')}}
                     <!-- end pagination -->
 
                 </div>

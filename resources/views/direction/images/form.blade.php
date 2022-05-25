@@ -22,7 +22,7 @@
             </li>
             <li class="breadcrumb-item">
                 <a href="{{ route('direction.index') }}">
-                    {{ __( 'Направления' ) }}
+                    {{ __( 'Услуги' ) }}
                 </a>
             </li>
             <li class="breadcrumb-item">

@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('meta')
+    <title>{{ __( 'Главная' ) }}</title>
+@endsection
+
 @push('plugin-styles')
     <link href="{{ asset('assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet" />
 @endpush

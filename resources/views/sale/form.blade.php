@@ -173,7 +173,7 @@
                         <!-- group -->
                         <div class="form-group mb-4">
                             <label for="published_at">{{ __( 'Дата публикации' ) }}</label>
-                            {!! html_input('text', 'published_at', $model->published_at ? $model->published_at->format('m/d/Y') : '', ['class' => 'form-control datepicker', 'id' => 'published_at', 'autocomplete' => 'off']) !!}
+                            {!! html_input('text', 'published_at', $model->published_at ? $model->published_at->format('m/d/Y') : now()->format('m/d/Y'), ['class' => 'form-control datepicker', 'id' => 'published_at', 'autocomplete' => 'off']) !!}
                             @error('published_at')
                             <div class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -184,10 +184,8 @@
 
                         <!-- group -->
                         <div class="form-group mb-4">
-                            <label for="published_at">{{ __( 'Дата окончания акции' ) }}</label>
-                            <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
-                            {!! html_input('text', 'date_end', $model->date_end ? $model->date_end->format('m/d/Y H:i A') : '', ['class' => 'form-control', 'id' => 'datetimepickerExample', 'autocomplete' => 'off', 'data-toggle' => 'datetimepicker', 'data-target' => '#datetimepickerExample']) !!}
-                            </div>
+                            <label for="date_end">{{ __( 'Дата окончания акции' ) }}</label>
+                            {!! html_input('text', 'date_end', $model->date_end ? $model->date_end->format('m/d/Y') : '', ['class' => 'form-control datepicker', 'id' => 'date_end', 'autocomplete' => 'off']) !!}
                             @error('date_end')
                             <div class="invalid-feedback d-block" role="alert">
                                 <strong>{{ $message }}</strong>
@@ -222,6 +220,16 @@
                             {{ __( 'Действие' ) }}
                         </h6>
                         <!-- end title -->
+
+                        <!-- check -->
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                                {!! html_hidden('is_home_banner', 0) !!}
+                                {!! html_checkbox('is_home_banner', $model->is_home_banner, ['class' => 'form-check-input', 'value' => 1]) !!} {{ __( 'Добавить на баннер' ) }}
+                                <i class="input-frame"></i>
+                            </label>
+                        </div>
+                        <!-- end check -->
 
                         <!-- check -->
                         <div class="form-check form-check-flat form-check-primary">

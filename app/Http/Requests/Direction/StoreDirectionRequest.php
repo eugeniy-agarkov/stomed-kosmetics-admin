@@ -13,4 +13,13 @@ class StoreDirectionRequest extends FormRequest
             'clinic_id' => 'required|nullable|integer|exists:clinics,id',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Поле Наименование не может быть пустым',
+            'category_id.required' => 'Укажите категорию',
+        ];
+    }
+
 }

@@ -45,7 +45,9 @@ class Sale extends Model
         'content',
         'photo',
         'is_active',
+        'is_home_banner',
         'date_end',
+        'published_at',
     ];
 
     /**
@@ -90,9 +92,9 @@ class Sale extends Model
      * @param $date
      * @return void
      */
-    public function setDateEndAttribute($date): void
-    {
-        $this->attributes['date_end'] = Carbon::createFromFormat('d/m/Y H:i A', $date)->format('Y-m-d H:i:s');
-    }
+//    public function setDateEndAttribute($date): void
+//    {
+//        $this->attributes['date_end'] = Carbon::createFromFormat('d/m/Y H:i A', $date)->format('Y-m-d H:i:s');
+//    }
 
 }

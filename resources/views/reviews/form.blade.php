@@ -85,7 +85,7 @@
                                 <!-- group -->
                                 <div class="form-group">
                                     <label for="doctor_id">{{ __( 'Врач' ) }}</label>
-                                    {!! html_select('doctor_id', old('doctor_id', $model->doctor_id), [null => __( 'Нет' )] + list_data($doctors, 'id', 'fio'), ['class' => 'custom-select', 'id' => 'doctor_id']) !!}
+                                    {!! html_select('doctor_id', old('doctor_id', $model->doctor_id), [null => __( 'Нет' )] + list_data($doctors, 'id', 'name'), ['class' => 'custom-select', 'id' => 'doctor_id']) !!}
                                     @error('doctor_id')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -157,7 +157,7 @@
                                 <!-- group -->
                                 <div class="form-group">
                                     <label for="published_at">{{ __( 'Дата публикации' ) }}</label>
-                                    {!! html_input('text', 'published_at', $model->published_at ? $model->published_at->format('m/d/Y') : '', ['class' => 'form-control datepicker', 'id' => 'published_at', 'autocomplete' => 'off']) !!}
+                                    {!! html_input('text', 'published_at', $model->published_at ? $model->published_at->format('m/d/Y') : now()->format('m/d/Y'), ['class' => 'form-control datepicker', 'id' => 'published_at', 'autocomplete' => 'off']) !!}
                                     @error('published_at')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>

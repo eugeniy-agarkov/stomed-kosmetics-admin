@@ -4,7 +4,7 @@
     @if($model->id)
         <title>{{$model->name}}</title>
     @else
-        <title>{{ __( 'Добавление направления' ) }}</title>
+        <title>{{ __( 'Добавление услуги' ) }}</title>
     @endif
 @endsection
 
@@ -22,7 +22,7 @@
             </li>
             <li class="breadcrumb-item">
                 <a href="{{route('direction.index')}}">
-                    {{ __( 'Направления' ) }}
+                    {{ __( 'Услуги' ) }}
                 </a>
             </li>
             @if($model->id)
@@ -31,7 +31,7 @@
                 </li>
             @else
                 <li class="breadcrumb-item active" aria-current="page">
-                    {{ __( 'Добавление направления' ) }}
+                    {{ __( 'Добавление услуги' ) }}
                 </li>
             @endif
         </ol>

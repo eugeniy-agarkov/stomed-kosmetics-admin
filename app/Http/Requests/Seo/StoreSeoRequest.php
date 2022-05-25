@@ -12,4 +12,13 @@ class StoreSeoRequest extends FormRequest
             'name' => 'required|max:255',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'page.required' => 'Поле URL страницы не может быть пустым',
+            'name.required' => 'Поле Наименование не может быть пустым',
+        ];
+    }
+
 }

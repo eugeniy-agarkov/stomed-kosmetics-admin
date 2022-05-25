@@ -158,7 +158,7 @@
                     <!-- end table -->
 
                     <!-- pagination -->
-                    {{$model->appends(request()->all())->links()}}
+                    {{$model->appends(request()->all())->links('vendor.pagination.bootstrap-4')}}
                     <!-- end pagination -->
 
                 </div>

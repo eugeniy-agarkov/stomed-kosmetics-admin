@@ -9,7 +9,6 @@ class StoreDoctorRequest extends FormRequest
     {
         return [
             'name' => 'required|max:255',
-            'content' => 'nullable|max:255',
             'experience' => 'nullable|max:255',
             'degree' => 'nullable|max:255',
             'category' => 'nullable|max:255',
@@ -18,4 +17,12 @@ class StoreDoctorRequest extends FormRequest
             'is_active' => 'integer'
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'name.required' => 'Поле Полное наименование не может быть пустым',
+        ];
+    }
+
 }
