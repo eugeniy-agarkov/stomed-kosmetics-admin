@@ -18,11 +18,12 @@ return new class extends Migration
         {
 
             $table->unsignedInteger('sale_id')->nullable(false)->primary();
-            $table->string('title')->nullable();
-            $table->string('description')->nullable();
+            $table->string('h1')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+            $table->string('meta_keyword')->nullable();
+            $table->boolean('robots')->default(1);
             $table->text('content')->nullable();
-
-            $table->dateTime('published_at', 0)->default(Carbon::now());
 
             $table->foreign('sale_id', 'fk_sales_page_sales_id')->references('id')->on('sales')
                 ->onDelete('cascade');

@@ -82,7 +82,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href="{{ Storage::url('thumbnail/' . $item->image) }}" target="_blank">
+                                    <a href="{{ Storage::disk('public')->url('images/' . $item->image) }}" target="_blank">
                                         {{ __( 'Посмотреть' ) }}
                                     </a>
                                 </td>

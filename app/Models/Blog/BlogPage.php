@@ -24,9 +24,13 @@ class BlogPage extends Model
      * @var string[]
      */
     protected $fillable = [
-        'title',
-        'description',
-        'content',
+        'blog_id',
+        'h1',
+        'meta_title',
+        'meta_description',
+        'meta_keyword',
+        'robots',
+        'content'
     ];
 
     /**

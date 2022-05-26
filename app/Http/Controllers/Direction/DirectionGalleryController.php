@@ -91,7 +91,7 @@ class DirectionGalleryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreGalleryRequest $request, StoreGalleryHandler $handler, Gallery $image, Direction $direction)
+    public function update(StoreGalleryRequest $request, StoreGalleryHandler $handler, Direction $direction, Gallery $image)
     {
 
         if ($image = $handler->process($request, $image))

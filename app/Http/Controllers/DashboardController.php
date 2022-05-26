@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Form;
+use App\Models\Reviews\Review;
+
 class DashboardController extends Controller
 {
 
@@ -23,7 +26,10 @@ class DashboardController extends Controller
     public function index()
     {
 
-        return view('dashboard');
+        return view('dashboard', [
+            'appoinment' => Form::whereAppointment()->orderBy('id', 'desc')->take(7)->get(),
+            'reviews' => Review::orderBy('id', 'desc')->take(5)->get(),
+        ]);
     }
 
 }

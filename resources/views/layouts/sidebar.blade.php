@@ -6,7 +6,7 @@
 
         <!-- Logo -->
         <a href="{{ route('dashboard') }}" class="sidebar-brand">
-            {{ __( 'Stomed' ) }}
+            {{ __( 'Stolicagem.ru' ) }}
         </a>
         <!-- End Logo -->
 

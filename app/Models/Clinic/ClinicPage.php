@@ -24,13 +24,13 @@ class ClinicPage extends Model
      * @var string[]
      */
     protected $fillable = [
-        'title',
-        'description',
+        'clinic_id',
         'h1',
-        'features',
-        'caption',
+        'meta_title',
+        'meta_description',
+        'meta_keyword',
+        'robots',
         'content',
-        'route',
     ];
 
     /**

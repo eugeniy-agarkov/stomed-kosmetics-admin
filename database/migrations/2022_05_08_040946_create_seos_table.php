@@ -25,7 +25,7 @@ return new class extends Migration
             $table->string('meta_title')->nullable();
             $table->mediumText('meta_description')->nullable();
             $table->mediumText('meta_keyword')->nullable();
-            $table->boolean('robots')->default(true);
+            $table->boolean('robots')->default(1);
             $table->string('canonical')->nullable();
 
             $table->dateTime('published_at', 0)->default(Carbon::now());

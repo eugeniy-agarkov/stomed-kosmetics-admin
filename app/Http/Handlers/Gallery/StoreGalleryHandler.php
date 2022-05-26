@@ -18,6 +18,7 @@ class StoreGalleryHandler extends BaseHandler
      */
     public function process(StoreGalleryRequest $request, Gallery $image = null): ?Gallery
     {
+
         try {
 
             if (!$image)

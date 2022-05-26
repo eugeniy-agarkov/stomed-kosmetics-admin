@@ -63,7 +63,7 @@ class ClinicPageController extends Controller
 
         return view('clinic.page', [
             'clinic' => $clinic,
-            'model' => $clinic->page,
+            'model' => $clinic->page ?? new ClinicPage(),
         ]);
 
     }

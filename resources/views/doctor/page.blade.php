@@ -63,11 +63,11 @@
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="title">
-                                        {{ __( 'Meta title' ) }}
+                                    <label for="h1">
+                                        {{ __( 'H1' ) }}
                                     </label>
-                                    {!! html_input('text', 'title', $model->title, ['class' => 'form-control', 'id' => 'title']) !!}
-                                    @error('title')
+                                    {!! html_input('text', 'h1', $model->h1, ['class' => 'form-control', 'id' => 'h1']) !!}
+                                    @error('h1')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -83,11 +83,51 @@
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="description">
+                                    <label for="meta_title">
+                                        {{ __( 'Meta title' ) }}
+                                    </label>
+                                    {!! html_input('text', 'meta_title', $model->meta_title, ['class' => 'form-control', 'id' => 'meta_title']) !!}
+                                    @error('meta_title')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-6">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="meta_description">
                                         {{ __( 'Meta description' ) }}
                                     </label>
-                                    {!! html_textarea('description', $model->description, ['class' => 'form-control', 'id'=>'description', 'rows' => 6]) !!}
-                                    @error('description')
+                                    {!! html_textarea('meta_description', $model->meta_description, ['class' => 'form-control', 'id'=>'meta_description', 'rows' => 6]) !!}
+                                    @error('meta_description')
+                                    <div class="invalid-feedback d-block" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </div>
+                                    @enderror
+                                </div>
+                                <!-- end group -->
+
+                            </div>
+                            <!-- end col -->
+
+                            <!-- col -->
+                            <div class="col-lg-6">
+
+                                <!-- group -->
+                                <div class="form-group">
+                                    <label for="meta_keyword">
+                                        {{ __( 'Meta Keyword' ) }}
+                                    </label>
+                                    {!! html_textarea('meta_keyword', $model->meta_keyword, ['class' => 'form-control', 'id'=>'meta_keyword', 'rows' => 6]) !!}
+                                    @error('meta_keyword')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </div>
@@ -118,6 +158,22 @@
 
                     <!-- body -->
                     <div class="card-body">
+
+                        <!-- title -->
+                        <h6 class="card-title pt-3">
+                            {{ __( 'Прочее' ) }}
+                        </h6>
+                        <!-- end title -->
+
+                        <!-- check -->
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                                {!! html_hidden('robots', 0) !!}
+                                {!! html_checkbox('robots', $model->robots, ['class' => 'form-check-input', 'value' => 1]) !!} {{ __( 'Индексировать' ) }}
+                                <i class="input-frame"></i>
+                            </label>
+                        </div>
+                        <!-- end check -->
 
                         <!-- title -->
                         <h6 class="card-title pt-3">

@@ -24,9 +24,13 @@ class DirectionPage extends Model
      * @var string[]
      */
     protected $fillable = [
-        'title',
-        'description',
-        'content',
+        'direction_id',
+        'h1',
+        'meta_title',
+        'meta_description',
+        'meta_keyword',
+        'robots',
+        'content'
     ];
 
     /**
