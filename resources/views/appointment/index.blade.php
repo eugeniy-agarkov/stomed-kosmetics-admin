@@ -45,6 +45,7 @@
                         <tr>
                             <th>{{ __( 'Дата' ) }}</th>
                             <th>{{ __( 'Форма' ) }}</th>
+                            <th>{{ __( 'Доктор' ) }}</th>
                             <th>{{ __( 'Содержимое' ) }}</th>
                             <th>{{ __( 'Имя' ) }}</th>
                             <th>{{ __( 'Телефон' ) }}</th>
@@ -59,6 +60,11 @@
                                 </td>
                                 <td>
                                     {{ \App\Enums\FormEnum::getName($item->form) }}
+                                </td>
+                                <td class="text-wrap">
+                                    @if( $item->doctor_id )
+                                        {{ $item->doctor->name }}
+                                    @endif
                                 </td>
                                 <td class="text-wrap">
                                     @if( $item->direction_id )

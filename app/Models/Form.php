@@ -51,7 +51,7 @@ class Form extends Model
      */
     public function doctor(): HasOne
     {
-        return $this->hasOne(Doctor::class);
+        return $this->hasOne(Doctor::class, 'id', 'doctor_id');
     }
 
     /**

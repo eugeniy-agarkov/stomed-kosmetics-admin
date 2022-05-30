@@ -109,7 +109,7 @@
                                 <!-- group -->
                                 <div class="form-group">
                                     <label for="excerpt">
-                                        {{ __( 'Краткий текст' ) }}
+                                        {{ __( 'Должность' ) }}
                                     </label>
                                     {!! html_textarea('excerpt', old('excerpt', $model->excerpt), ['class' => 'form-control', 'id' => 'excerpt', 'rows' => 5]) !!}
                                     @error('excerpt')
