@@ -29,6 +29,8 @@ class ClinicDetail extends Model
         'schedule',
         'lat',
         'lng',
+        'route',
+        'content',
     ];
 
     /**

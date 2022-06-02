@@ -226,8 +226,8 @@
 
                                 <!-- group -->
                                 <div class="form-group">
-                                    <label for="content">{{ __( 'Как доехать' ) }}</label>
-                                    {!! html_textarea('route', old('route', $model->id ? $page->route : ''), ['class' => 'form-control', 'id'=>'route', 'rows' => 6]) !!}
+                                    <label for="route">{{ __( 'Как доехать' ) }}</label>
+                                    {!! html_textarea('route', old('route', $model->id ? $details->route : ''), ['class' => 'form-control', 'id'=>'route', 'rows' => 6]) !!}
                                     @error('route')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -245,7 +245,7 @@
                                 <!-- group -->
                                 <div class="form-group">
                                     <label for="content">{{ __( 'Описание' ) }}</label>
-                                    {!! html_textarea('content', old('content', $model->id ? $page->content : ''), ['class' => 'form-control custom-editor', 'id'=>'content']) !!}
+                                    {!! html_textarea('content', old('content', $model->id ? $details->content : ''), ['class' => 'form-control custom-editor', 'id'=>'content']) !!}
                                     @error('content')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>

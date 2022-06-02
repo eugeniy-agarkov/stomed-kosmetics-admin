@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Form;
 use App\Models\Reviews\Review;
+use App\Models\Slot;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
