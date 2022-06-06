@@ -44,6 +44,11 @@
                 {{ __( 'Контакты' ) }}
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" id="links-tab" data-toggle="tab" href="#links" role="tab" aria-controls="links" aria-selected="false">
+                {{ __( 'Ссылки' ) }}
+            </a>
+        </li>
     </ul>
     <!-- end nav -->
 
@@ -248,6 +253,78 @@
 
                             </div>
                             <!-- End Pane > Contacts -->
+
+                            <!-- Pane > Links -->
+                            <div class="tab-pane fade" id="links" role="tabpanel" aria-labelledby="links-tab">
+
+                                <!-- row -->
+                                <div class="row">
+
+                                    <!-- col -->
+                                    <div class="col-lg-12">
+
+                                        <!-- group -->
+                                        <div class="form-group">
+                                            <label for="type">
+                                                {{ __( 'Ссылка на прайс лист' ) }}
+                                            </label>
+                                            {!! html_input('text', 'settings[link_price]', isset($model->link_price) ? $model->link_price : '', ['class' => 'form-control', 'id' => 'link_price']) !!}
+                                        </div>
+                                        <!-- end group -->
+
+                                    </div>
+                                    <!-- end col -->
+
+                                    <!-- col -->
+                                    <div class="col-lg-12">
+
+                                        <!-- group -->
+                                        <div class="form-group">
+                                            <label for="type">
+                                                {{ __( 'Ссылка на налоговый вычет' ) }}
+                                            </label>
+                                            {!! html_input('text', 'settings[link_nalog]', isset($model->link_nalog) ? $model->link_nalog : '', ['class' => 'form-control', 'id' => 'link_nalog']) !!}
+                                        </div>
+                                        <!-- end group -->
+
+                                    </div>
+                                    <!-- end col -->
+
+                                    <!-- col -->
+                                    <div class="col-lg-12">
+
+                                        <!-- group -->
+                                        <div class="form-group">
+                                            <label for="type">
+                                                {{ __( 'Ссылка на договор оферты' ) }}
+                                            </label>
+                                            {!! html_input('text', 'settings[link_dogovor]', isset($model->link_dogovor) ? $model->link_dogovor : '', ['class' => 'form-control', 'id' => 'link_dogovor']) !!}
+                                        </div>
+                                        <!-- end group -->
+
+                                    </div>
+                                    <!-- end col -->
+
+                                    <!-- col -->
+                                    <div class="col-lg-12">
+
+                                        <!-- group -->
+                                        <div class="form-group">
+                                            <label for="type">
+                                                {{ __( 'Ссылка на политику конфиденциальности' ) }}
+                                            </label>
+                                            {!! html_input('text', 'settings[link_pravicy_policy]', isset($model->link_pravicy_policy) ? $model->link_pravicy_policy : '', ['class' => 'form-control', 'id' => 'link_pravicy_policy']) !!}
+                                        </div>
+                                        <!-- end group -->
+
+                                    </div>
+                                    <!-- end col -->
+
+                                </div>
+                                <!-- end row -->
+
+                            </div>
+                            <!-- End Pane > Links -->
 
                         </div>
                         <!-- end body -->

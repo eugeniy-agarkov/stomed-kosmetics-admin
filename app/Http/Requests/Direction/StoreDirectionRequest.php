@@ -10,7 +10,7 @@ class StoreDirectionRequest extends FormRequest
         return [
             'name' => 'required|max:255',
             'category_id' => 'required|nullable|integer|exists:direction_categories,id',
-            'clinic_id' => 'required|nullable|integer|exists:clinics,id',
+            //'clinic_id' => 'required|nullable|integer|exists:clinics,id',
         ];
     }
 

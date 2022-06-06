@@ -18,6 +18,7 @@
     <link href="{{ asset('assets/plugins/select2/select2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/simplemde/simplemde.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/dropify/css/dropify.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
     <!-- end plugin css -->
 
@@ -84,6 +85,7 @@
     <script src="{{ asset('assets/plugins/tempusdominus-bootstrap-4/tempusdominus-bootstrap-4.js') }}"></script>
     <script src="{{ asset('assets/plugins/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/simplemde/simplemde.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <!-- end plugin js -->
 
     <!-- common js -->

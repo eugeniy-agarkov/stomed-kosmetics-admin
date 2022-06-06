@@ -24,7 +24,7 @@ return new class extends Migration
             $table->mediumText('excerpt')->nullable();
             $table->longText('content')->nullable();
             $table->string('photo')->nullable();
-            $table->unsignedSmallInteger('order')->default(0);
+            $table->unsignedSmallInteger('order')->nullable();
             $table->dateTime('date_end')->nullable();
             $table->boolean('is_active')->default(1);
             $table->boolean('is_home_banner')->default(0);

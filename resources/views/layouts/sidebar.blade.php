@@ -187,6 +187,26 @@
                 </a>
             </li>
 
+            <li class="nav-item nav-category">
+                {{ __( 'цены' ) }}
+            </li>
+            <li class="nav-item {{ active_class(['prices.doctor']) }}">
+                <a href="{{ route('prices.doctor') }}" class="nav-link">
+                    <i class="link-icon" data-feather="dollar-sign"></i>
+                    <span class="link-title">
+                        {{ __( 'Врачей' ) }}
+                    </span>
+                </a>
+            </li>
+            <li class="nav-item {{ active_class(['prices.direction']) }}">
+                <a href="{{ route('prices.direction') }}" class="nav-link">
+                    <i class="link-icon" data-feather="dollar-sign"></i>
+                    <span class="link-title">
+                        {{ __( 'Услуг' ) }}
+                    </span>
+                </a>
+            </li>
+
         </ul>
         <!-- end nav -->
 

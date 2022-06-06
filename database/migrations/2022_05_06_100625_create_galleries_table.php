@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('image')->nullable();
             $table->string('alt')->nullable();
             $table->string('title')->nullable();
-            $table->unsignedSmallInteger('order')->default(0);
+            $table->unsignedSmallInteger('order')->nullable();
             $table->dateTime('published_at', 0)->default(Carbon::now());
 
             $table->foreign('direction_id', 'fk_direction_id')->references('id')->on('directions')

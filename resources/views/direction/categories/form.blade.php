@@ -233,6 +233,17 @@
                         <!-- check -->
                         <div class="form-check form-check-flat form-check-primary">
                             <label class="form-check-label">
+                                {!! html_hidden('is_menu', 0) !!}
+                                {!! html_checkbox('is_menu', old('is_menu', $model->is_menu), ['class' => 'form-check-input', 'value' => 1]) !!}
+                                {{ __( 'Показать в меню' ) }}
+                                <i class="input-frame"></i>
+                            </label>
+                        </div>
+                        <!-- end check -->
+
+                        <!-- check -->
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
                                 {!! html_hidden('is_active', 0) !!}
                                 {!! html_checkbox('is_active', old('is_active', $model->is_active), ['class' => 'form-check-input', 'value' => 1]) !!}
                                 {{ __( 'Активный' ) }}

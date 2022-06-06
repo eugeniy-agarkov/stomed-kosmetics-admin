@@ -32,7 +32,7 @@ return new class extends Migration
             $table->string('degree')->nullable();
             $table->boolean('is_active')->default(1);
             $table->boolean('is_top')->default(0);
-            $table->unsignedSmallInteger('order')->default(0);
+            $table->unsignedSmallInteger('order')->nullable();
 
             $table->dateTime('published_at', 0)->default(Carbon::now());
             $table->softDeletes();

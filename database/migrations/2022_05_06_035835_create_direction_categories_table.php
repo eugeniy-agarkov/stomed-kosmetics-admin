@@ -24,7 +24,8 @@ return new class extends Migration
             $table->string('title_menu')->nullable(false);
             $table->string('image')->nullable();
             $table->boolean('is_active')->default(1);
-            $table->unsignedSmallInteger('order')->default(0);
+            $table->boolean('is_menu')->default(1);
+            $table->unsignedSmallInteger('order')->nullable();
 
             $table->dateTime('published_at', 0)->default(Carbon::now());
 

@@ -60,4 +60,137 @@
         }
     });
 
+    /**
+     * Save Price in All Table Prices
+     */
+    $(document).on('click', '.priceLiveSave', function (e) {
+
+        e.preventDefault();
+
+        var $this = $(this),
+            url = $this.prop('href'),
+            fields = $this.closest('tr').find('input:not(:hidden),select,radio,checkbox,textarea'),
+            model = $this.data('model'),
+            id = $this.data('id');
+
+        $.ajax( {
+            beforeSend  :   function(xhr){
+
+            },
+            data        :   fields.serialize() + '&id=' + id + '&model=' + model,
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            method      :   'POST',
+            complete    :   function(){
+
+            },
+            error: function(response) {
+
+            },
+            success     :   function( response ){
+
+                if( response.status == 'success' )
+                {
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+
+                }else {
+
+                    Swal.fire({
+                        position: 'top-end',
+                        icon: 'error',
+                        title: response.message,
+                        showConfirmButton: false,
+                        timer: 1000
+                    });
+
+                }
+
+
+            },
+            url         :   url
+        } );
+
+    });
+
+    /**
+     * Remove Price in All Table Prices
+     */
+    $(document).on('click', '.priceLiveDestroy', function (e)
+    {
+
+        e.preventDefault();
+
+        if (confirm('Удалить запись?')) {
+
+            var $this = $(this),
+                url = $this.prop('href'),
+                model = $this.data('model'),
+                id = $this.data('id');
+
+            $.ajax( {
+                beforeSend  :   function(xhr){
+
+                },
+                data        :   {
+                    id: id,
+                    model: model,
+                },
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                method      :   'DELETE',
+                complete    :   function(){
+
+                },
+                error: function(response) {
+
+                },
+                success     :   function( response ){
+
+                    if( response.status == 'success' )
+                    {
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'success',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 1000,
+                            onClose: () => {
+                                location.reload();
+                            }
+                        });
+
+                    }else {
+
+                        Swal.fire({
+                            position: 'top-end',
+                            icon: 'error',
+                            title: response.message,
+                            showConfirmButton: false,
+                            timer: 1000
+                        });
+
+                    }
+
+                },
+                url         :   url
+            } );
+
+        } else {
+
+        }
+
+
+    });
+
+
 })($)

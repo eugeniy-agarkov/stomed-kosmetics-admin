@@ -30,7 +30,7 @@ return new class extends Migration
             $table->unsignedInteger('price')->nullable();
             $table->boolean('is_top')->default(true);
             $table->boolean('is_active')->default(true);
-            $table->unsignedSmallInteger('order')->default(0);
+            $table->unsignedSmallInteger('order')->nullable();
 
             $table->dateTime('published_at', 0)->default(Carbon::now());
 

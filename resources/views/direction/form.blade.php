@@ -91,7 +91,7 @@
                                     <label for="clinic_id">
                                         {{ __( 'Клиника' ) }}
                                     </label>
-                                    {!! html_select('clinic_id', old('clinic_id', $model->clinic_id), $clinics, ['class' => 'custom-select', 'id' => 'clinic']) !!}
+                                    {!! html_select('clinic_id', old('clinic_id', $model->clinic_id), ['' => __( 'Нет' )] + $clinics, ['class' => 'custom-select', 'id' => 'clinic']) !!}
                                     @error('clinic_id')
                                     <div class="invalid-feedback d-block" role="alert">
                                         <strong>{{ $message }}</strong>

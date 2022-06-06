@@ -25,7 +25,7 @@ return new class extends Migration
             $table->unsignedInteger('discount_price')->nullable();
             $table->string('description')->nullable();
             $table->string('condition')->nullable();
-            $table->unsignedSmallInteger('order')->default(0);
+            $table->unsignedSmallInteger('order')->nullable();
 
             $table->dateTime('published_at', 0)->default(Carbon::now());
 
