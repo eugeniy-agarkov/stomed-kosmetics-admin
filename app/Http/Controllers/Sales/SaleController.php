@@ -24,7 +24,7 @@ class SaleController extends Controller
     {
 
         return view('sale.index', [
-            'model' => $sale->paginate(10),
+            'model' => $sale->whereSearch()->paginate(10),
             'categories' => $categories->all()
         ]);
 

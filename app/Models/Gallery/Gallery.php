@@ -3,6 +3,7 @@
 namespace App\Models\Gallery;
 
 use App\Models\Direction\Direction;
+use App\Queries\Gallery\GalleryQuery;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -32,6 +33,17 @@ class Gallery extends Model
         'title',
         'order',
     ];
+
+    /**
+     * @param $query
+     * @return GalleryQuery
+     */
+    public function newEloquentBuilder($query): GalleryQuery
+    {
+
+        return new GalleryQuery($query);
+
+    }
 
     /**
      * @return BelongsTo

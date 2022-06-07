@@ -20,7 +20,7 @@ class DirectionController extends Controller
     {
 
         return view('direction.index', [
-            'model' => $direction->paginate(10),
+            'model' => $direction->whereSearch()->paginate(10),
             'categories' => $categories->all()
         ]);
 

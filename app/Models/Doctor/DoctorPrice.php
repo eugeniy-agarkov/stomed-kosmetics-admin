@@ -3,6 +3,7 @@
 namespace App\Models\Doctor;
 
 use App\Models\Direction\Direction;
+use App\Queries\Prices\PricesQuery;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,6 +35,17 @@ class DoctorPrice extends Model
         'condition',
         'order'
     ];
+
+    /**
+     * @param $query
+     * @return PricesQuery
+     */
+    public function newEloquentBuilder($query): PricesQuery
+    {
+
+        return new PricesQuery($query);
+
+    }
 
     /**
      * @return BelongsTo

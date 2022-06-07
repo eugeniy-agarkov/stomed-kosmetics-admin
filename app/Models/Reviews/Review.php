@@ -2,6 +2,7 @@
 
 namespace App\Models\Reviews;
 
+use App\Queries\Reviews\ReviewsQuery;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -37,6 +38,17 @@ class Review extends Model
         'type',
         'published_at',
     ];
+
+    /**
+     * @param $query
+     * @return ReviewsQuery
+     */
+    public function newEloquentBuilder($query): ReviewsQuery
+    {
+
+        return new ReviewsQuery($query);
+
+    }
 
     /**
      * @return HasMany

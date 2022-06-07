@@ -37,31 +37,26 @@
             <div class="card-body">
 
                 <!-- form -->
-                <form action="{{ route('reviews.index') }}" class="row">
-                    @csrf
+                <form action="{{ url()->current() }}" class="row">
 
                     <!-- col -->
-                    <div class="col-md-3">
-                        {!! html_select('doctor', (int)request('doctor', 0), [0 => __( 'Врач' )] + list_data($doctors, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
+                    <div class="col-md-4">
+                        {!! html_select('clinic', (int)request('clinic', ''), ['' => __( 'Клиника' )] + list_data($clinics, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
                     </div>
                     <!-- end col -->
 
                     <!-- col -->
-                    <div class="col-md-9">
-
-                        <!-- group -->
-                        <div class="input-group">
-                            {!! html_input('search', 'fio', request('fio', ''), ['class' => 'form-control']) !!}
-                            <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-primary" type="submit">
-                                    {{ __( 'Найти' ) }}
-                                </button>
-                            </span>
-                        </div>
-                        <!-- end group -->
-
+                    <div class="col-md-4">
+                        {!! html_select('doctor', (int)request('doctor', ''), ['' => __( 'Врач' )] + list_data($doctors, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
                     </div>
                     <!-- end col -->
+
+                    <!-- col -->
+                    <div class="col-md-4">
+                        {!! html_select('direction', (int)request('direction', ''), ['' => __( 'Услуга' )] + list_data($directions, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
+                    </div>
+                    <!-- end col -->
+
                 </form>
                 <!-- end form -->
 

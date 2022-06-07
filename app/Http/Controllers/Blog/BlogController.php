@@ -20,7 +20,7 @@ class BlogController extends Controller
     {
 
         return view('blog.index', [
-            'model' => $blog->paginate(10),
+            'model' => $blog->whereSearch()->paginate(10),
             'categories' => $categories->all()
         ]);
 

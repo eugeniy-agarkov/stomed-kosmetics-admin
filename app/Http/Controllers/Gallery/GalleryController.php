@@ -24,7 +24,7 @@ class GalleryController extends Controller
     {
 
         return view('gallery.index', [
-            'model' => $gallery->paginate(10),
+            'model' => $gallery->whereSearch()->paginate(10),
             'directions' => $direction->all()
         ]);
 

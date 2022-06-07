@@ -35,12 +35,11 @@
             <div class="card-body">
 
                 <!-- form -->
-                <form action="{{ route('direction.index') }}" class="row">
-                    @csrf
+                <form action="{{ url()->current() }}" class="row">
 
                     <!-- col -->
                     <div class="col-md-3">
-                        {!! html_select('categories', (int)request('categories', ''), ['' => __( 'Категория' )] + list_data($categories, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
+                        {!! html_select('category', (int)request('category', ''), ['' => __( 'Категория' )] + list_data($categories, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
                     </div>
                     <!-- end col -->
 

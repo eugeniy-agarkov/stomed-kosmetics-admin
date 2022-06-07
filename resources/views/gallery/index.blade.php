@@ -35,12 +35,11 @@
             <div class="card-body">
 
                 <!-- form -->
-                <form action="{{ route('gallery.index') }}" class="row">
-                    @csrf
+                <form action="{{ url()->current() }}" class="row">
 
                     <!-- col -->
                     <div class="col-md-3">
-                        {!! html_select('directions', (int)request('directions', ''), ['' => __( 'Направление' )] + list_data($directions, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
+                        {!! html_select('direction', (int)request('direction', ''), ['' => __( 'Направление' )] + list_data($directions, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
                     </div>
                     <!-- end col -->
 
@@ -118,7 +117,7 @@
                                 </td>
                                 <td>{{ $item->name }}</td>
                                 <td>
-                                    <a href="{{ Storage::url('images/' . $item->image) }}" target="_blank">
+                                    <a href="{{ Storage::disk('public')->url('images/' . $item->image) }}" target="_blank">
                                         {{ __( 'Посмотреть' ) }}
                                     </a>
                                 </td>

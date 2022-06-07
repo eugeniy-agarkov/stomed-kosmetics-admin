@@ -2,6 +2,7 @@
 
 namespace App\Models\Sales;
 
+use App\Queries\Sales\SaleQuery;
 use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -51,6 +52,17 @@ class Sale extends Model
     ];
 
     /**
+     * @param $query
+     * @return SaleQuery
+     */
+    public function newEloquentBuilder($query): SaleQuery
+    {
+
+        return new SaleQuery($query);
+
+    }
+
+    /**
      * @return \string[][]
      */
     public function sluggable(): array
@@ -87,14 +99,5 @@ class Sale extends Model
     {
         return $this->hasMany(SalePrice::class);
     }
-
-    /**
-     * @param $date
-     * @return void
-     */
-//    public function setDateEndAttribute($date): void
-//    {
-//        $this->attributes['date_end'] = Carbon::createFromFormat('d/m/Y H:i A', $date)->format('Y-m-d H:i:s');
-//    }
 
 }

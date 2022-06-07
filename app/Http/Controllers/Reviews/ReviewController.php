@@ -18,13 +18,14 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Review $review, Doctor $doctors, Direction $direction)
+    public function index(Review $review, Doctor $doctors, Direction $direction, Clinic $clinic)
     {
 
         return view('reviews.index', [
-            'model' => $review->paginate(10),
+            'model' => $review->whereClinic()->whereDoctor()->whereDirection()->paginate(10),
             'doctors' => $doctors->all(),
-            'directions' => $direction->all()
+            'directions' => $direction->all(),
+            'clinics' => $clinic->all(),
         ]);
 
     }

@@ -2,6 +2,7 @@
 
 namespace App\Models\Blog;
 
+use App\Queries\Blog\BlogQuery;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -36,6 +37,17 @@ class Blog extends Model
         'is_active',
         'published_at',
     ];
+
+    /**
+     * @param $query
+     * @return BlogQuery
+     */
+    public function newEloquentBuilder($query): BlogQuery
+    {
+
+        return new BlogQuery($query);
+
+    }
 
     /**
      * @return \string[][]

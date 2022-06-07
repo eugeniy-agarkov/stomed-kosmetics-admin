@@ -34,6 +34,69 @@
     <!-- End Breadcrumbs -->
 
     <!-- stretch -->
+    <div class="stretch-card">
+
+        <!-- card -->
+        <div class="card">
+
+            <!-- body -->
+            <div class="card-body">
+
+                <!-- form -->
+                <form action="{{ url()->current() }}" class="row">
+
+                    <!-- col -->
+                    <div class="col-md-2">
+                        <div class="form-check form-check-flat form-check-primary">
+                            <label class="form-check-label">
+                                {!! html_checkbox('code', request('code', 0), ['class' => 'form-check-input', 'value' => 1]) !!}
+                                {{ __( 'Без кода 1С' ) }}
+                                <i class="input-frame"></i>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- end col -->
+
+                    <!-- col -->
+                    <div class="col-md-3">
+                        @if( request()->routeIs('prices.doctor') )
+                            {!! html_select('doctor', (int)request('doctor', ''), ['' => __( 'Врач' )] + list_data($filter, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
+                        @elseif( request()->routeIs('prices.direction') )
+                            {!! html_select('direction', (int)request('direction', ''), ['' => __( 'Услуга' )] + list_data($filter, 'id', 'name'), ['onchange' => '$(this).closest("form").submit()']) !!}
+                        @endif
+                    </div>
+                    <!-- end col -->
+
+                    <!-- col -->
+                    <div class="col-md-7">
+
+                        <!-- group -->
+                        <div class="input-group">
+                            {!! html_input('search', 'description', request('description', ''), ['class' => 'form-control']) !!}
+                            <span class="input-group-append">
+                                <button class="file-upload-browse btn btn-primary" type="submit">
+                                    {{ __( 'Найти' ) }}
+                                </button>
+                            </span>
+                        </div>
+                        <!-- end group -->
+
+                    </div>
+                    <!-- end col -->
+
+                </form>
+                <!-- end form -->
+
+            </div>
+            <!-- end body -->
+
+        </div>
+        <!-- end card -->
+
+    </div>
+    <!-- end stretch -->
+
+    <!-- stretch -->
     <div class="stretch-card mt-2">
 
         <!-- card -->

@@ -1,9 +1,9 @@
 <?php
-namespace App\Queries\Sales;
+namespace App\Queries\Direction;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class SaleQuery extends Builder
+class DirectionQuery extends Builder
 {
 
     /**
@@ -17,13 +17,12 @@ class SaleQuery extends Builder
             $this->where('category_id', request()->input('category'));
         }
 
-        if( request()->has('name') )
+        if( request()->has('name') && request()->input('name') != '' )
         {
             $this->where('name', 'like', '%' . request()->input('name') . '%');
         }
 
         return $this;
-
     }
 
 }

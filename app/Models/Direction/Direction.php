@@ -3,6 +3,7 @@
 namespace App\Models\Direction;
 
 use App\Models\Gallery\Gallery;
+use App\Queries\Direction\DirectionQuery;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -42,6 +43,17 @@ class Direction extends Model
         'is_active',
         'order',
     ];
+
+    /**
+     * @param $query
+     * @return DirectionQuery
+     */
+    public function newEloquentBuilder($query): DirectionQuery
+    {
+
+        return new DirectionQuery($query);
+
+    }
 
     /**
      * @return \string[][]

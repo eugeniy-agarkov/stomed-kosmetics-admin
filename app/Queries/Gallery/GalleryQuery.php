@@ -1,9 +1,9 @@
 <?php
-namespace App\Queries\Sales;
+namespace App\Queries\Gallery;
 
 use Illuminate\Database\Eloquent\Builder;
 
-class SaleQuery extends Builder
+class GalleryQuery extends Builder
 {
 
     /**
@@ -12,9 +12,9 @@ class SaleQuery extends Builder
     public function whereSearch(): self
     {
 
-        if( request()->has('category') && request()->input('category') != '' )
+        if( request()->has('direction') && request()->input('direction') != '' )
         {
-            $this->where('category_id', request()->input('category'));
+            $this->where('direction_id', request()->input('direction'));
         }
 
         if( request()->has('name') )

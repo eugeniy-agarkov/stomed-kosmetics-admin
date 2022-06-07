@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Handlers\Doctor\StoreDoctorHandler;
 use App\Http\Requests\Doctor\StoreDoctorRequest;
 use App\Models\Clinic\Clinic;
+use App\Models\Direction\Direction;
 use App\Models\Direction\DirectionPrice;
 use App\Models\Doctor\Doctor;
 use App\Models\Doctor\DoctorPrice;
@@ -26,17 +27,20 @@ class PricesController extends Controller
         if( $request->routeIs('prices.doctor') )
         {
 
-            $model = DoctorPrice::paginate(10);
+            $model = DoctorPrice::whereSearchDoctor()->paginate(10);
+            $filter = Doctor::all();
 
         }elseif ( $request->routeIs('prices.direction') )
         {
 
-            $model = DirectionPrice::paginate(10);
+            $model = DirectionPrice::whereSearchDirection()->paginate(10);
+            $filter = Direction::all();
 
         }
 
         return view('prices.index', [
             'model' => $model,
+            'filter' => $filter,
         ]);
 
     }
